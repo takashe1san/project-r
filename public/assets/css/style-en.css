@@ -1,0 +1,417 @@
+.fadeInRight {
+    -webkit-animation-name: fadeInLeft;
+    animation-name: fadeInLeft;
+}
+.fadeInLeft {
+    -webkit-animation-name: fadeInRight;
+    animation-name: fadeInRight;
+}
+
+.logo-h {float: left;}
+
+.logo-h a .img-l, .logo-h a .img-l {
+    float: left;
+}
+
+.logo-name {
+    padding-right: 0;
+    padding-left: 20px;
+}
+a
+.header-top .btn, .lang {
+    float: right;
+}
+
+.lang i {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+.btn-more-menu, .searchForm {
+    float: right;
+}
+
+.navbar-left {
+    float: right !important;
+}
+
+.btn-more-menu {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.home-slider .text-slider::before {
+    right: auto;
+    left: 0;
+    transform: scale(-1);
+}
+
+.home-slider .text-slider {
+    direction: ltr;
+    text-align: left;
+}
+
+.home-slider .text-slider h1::after {
+    right: auto;
+    left: 0;
+}
+
+.btn-more::before {
+    right: auto;
+    left: 0;
+}
+
+.title-cont h1 i {
+    margin-left: 0;
+    margin-right: 20px;
+}
+
+.title h2::after, .title h3::after {
+    right: auto;
+    left: 0;
+}
+
+.about-video::after {
+    left: auto;
+    right: -40px;
+}
+
+.courses-m .title h3::after {
+    right: 0;
+    left: 0;
+}
+
+.block-courses .details .col-md-5.col-xs-12 {
+    float: right;
+}
+
+.block-courses .details .name-course::before {
+    right: auto;
+    left: 7px;
+}
+
+.block-courses .details .name-course {
+    padding-right: 0;
+    padding-left: 10px;
+}
+
+.col-md-4.col-xs-12:hover .block-courses .details .name-course::before, .owl-item:hover .block-courses .details .name-course::before {
+    right: auto;
+    left: 18%;
+}
+
+.news-slider::after {
+    right: 0;
+    left: auto;
+}
+
+.title-news h3::after {
+    right: auto;
+    left: 0;
+}
+
+.title-letter {
+    border-right: 0;
+    border-left: 3px #fff31a solid;
+    padding-right: 0;
+    padding-left: 20px;
+}
+
+.news-letter form i {
+    left: 0;
+}
+
+.news-letter form button {
+    left: auto;
+    right: 0;
+}
+
+.content-footer-t h3::after {
+    right: auto;
+    left: 0;
+}
+
+.footer-top .links {
+    float: left;
+}
+
+.footer-top .links li {
+    float: left;
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+.social-f {
+    float: right;
+    text-align: right;
+}
+
+.ryad-logo {
+    float: right;
+    margin-left: 0;
+    margin-right: -23px;
+}
+
+.site-search .woocommerce-product-search button {
+    left: auto;
+    right: 0;
+}
+
+.close-sidbar {
+    right: 0;
+    left: auto;
+}
+
+.close-sidbar .close-sidebar::before {
+    right: auto;
+    left: 6px;
+}
+
+.close-sidebar::after {
+    right: auto;
+    left: -1px;
+}
+
+.sidebar .side-nav ul li a + .hover-img {
+    right: auto;
+    left: 65%;
+}
+
+.title-follow span {
+    padding-right: 0;
+    padding-left: 25px;
+}
+
+.title-follow span::before {
+    right: auto;
+    left: 0;
+}
+
+.follow-contact ul {
+    padding-right: 0;
+    padding-left: 20px;
+    border-right: 0;
+    border-left: 3px #ec3c3d solid;
+}
+
+.social-sidbar ul li a {
+    margin-left: 0;
+    margin-right: 16px;
+}
+
+.sidebar .lang {
+    left: auto;
+    right: 0;
+}
+
+.details-b li i {
+    float: left;
+    margin-left: 0;
+    margin-right: 11px;
+}
+
+.details-b li span {
+    float: left;
+}
+
+.call-now {
+    padding-right: 0;
+    padding-left: 20px;
+}
+
+.call-now span i {
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+.call-now::before {
+    right: auto;
+    left: 0;
+}
+
+.slider-m .owl-nav {
+    left: auto;
+    right: 0;
+}
+
+.slider-position {
+    left: auto;
+    right: -10%;
+}
+
+.nav-tabs li:first-child a {
+    margin-left: 0  !important;
+    margin-right: 5px !important;
+}
+
+.nav-tabs li:last-child a {
+    margin-left: 5px !important;
+    margin-right: 0 !important;
+}
+
+.footer-top .links li a::after {
+    right: auto;
+    left: 0;
+}
+
+.Lang-b {
+    float: right;
+}
+
+.title-page ul li a::after {
+    left: auto;
+    right: -5px;
+}
+
+.img-about {
+    box-shadow: 7px 7px 20px rgba(243, 231, 25, 0.2);
+}
+
+.form-contact .form-group i {
+    right: auto;
+    left: 0;
+}
+
+
+.header-inner .nav.navbar-nav {
+    margin-right: 0;
+    margin-left: 20px;
+}
+
+.banner-b .img-banner {
+    left: auto;
+    right: 0;
+    transform: translateX(-50px);
+}
+
+@keyframes animation-m {
+    
+    0% {
+        transform: translateX(100%)
+    }
+    100% {
+        transform: translateX(-50px)
+    }
+}
+
+
+.client-block {
+    direction: ltr;
+    text-align: left;
+}
+
+.client-block .title-client .icon {
+    float: left;
+}
+
+.client-block .title-client .name-client {
+    padding-right: 0;
+    padding-left: 15px;
+}
+
+
+.navbar-left.two {
+    float: left !important;
+}
+
+.navbar-nav {
+    float: left;
+    margin-right: 0;
+    margin-left: 60px;
+}
+
+.social-media-top {
+    float: right;
+}
+
+.social-media-top ul li {
+    float: right;
+    margin-right: 0;
+    margin-left: 14px;
+}
+
+.contact-ph span i {
+    margin-left: 0;
+    margin-right: 5px;
+}
+
+.block-courses .details {
+    direction: ltr;
+    text-align: left;
+}
+
+.owl-item:hover .block-courses .details .name-course::before {
+    left: 7px;
+    right: auto;
+}
+
+.block-courses .details .time-m i {
+    margin-left: 0;
+    margin-right: 3px;
+}
+
+
+@media (min-width: 4000px){
+.banner-b .img-banner.animation-n {
+    left: auto !important;
+    right: 30% ;
+}
+}
+
+@media screen and (max-width: 4000px) and (min-width: 1400px){
+.slider-position {
+    left: auto !important;
+    right: -20% !important;
+}
+
+.banner-b .img-banner {
+    right: 19%;
+    left: auto !important;
+}
+  
+}
+
+@media screen and (max-width: 2000px) and (min-width: 1400px)  {
+.slider-position {
+    left: auto !important;
+  	right: -15%;
+}
+}
+
+@media (max-width: 991px){
+.body-inner::before {
+    right: auto !important;
+    left: -32%;
+}
+	
+.header-inner .responsive .btn {
+    float: right;
+    margin-right: 0 !important;
+    margin-left: 20px !important;
+}	
+	
+	
+}
+@media (max-width: 767px){
+.about-video::after {
+    left: auto !important;
+    right: -15px;
+}
+	
+.body-inner::before {
+    left: auto !important;
+    right: 15px !important;
+}
+	
+	
+}
+@media (max-width: 480px){
+.col-md-4.col-xs-12:hover .block-courses .details .name-course::before, .owl-item:hover .block-courses .details .name-course::before {left: 5%; }
+	
+}
+@media (max-width: 390px){
+
+}
+.qtranxs_text_en{display:none!important}
+.qtranxs_text_ar{display:block!important}
+
