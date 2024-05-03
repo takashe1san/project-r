@@ -46,7 +46,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="{{ route('category.index') }}">
                             <i class="now-ui-icons files_single-copy-04"></i>
                             <p>Categories</p>
                         </a>
@@ -121,8 +121,9 @@
             <!-- End Navbar -->
 
             <div class="panel-header panel-header-sm">
+                Dashboard
             </div>
-            <div class="content">
+            <div class="content pt-5">
                 @yield('content')
             </div>
             <footer class="footer">

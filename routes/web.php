@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,12 @@ Route::group([
     'prefix' => 'dashboard',
 ], function () {
     Route::get('/', [DashboardController::class, 'index']);
+    Route::group([
+        'prefix' => 'categories',
+        'controller' => CategoryController::class,
+    ], function () {
+        Route::get('/', 'index')->name('category.index');
+    });
 });
 
 Route::get('/test', function() {
