@@ -23,7 +23,9 @@
                 <tr>
                     <td>{{ $category->name }}</td>
                     <td>{{ $category->description }}</td>
-                    <td></td>
+                    <td>
+                        <a href="{{ route('category.destroy', ['category' => $category->id])}}" class="btn btn-danger">delete</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
