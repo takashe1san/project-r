@@ -27,6 +27,7 @@ Route::group([
         'controller' => CategoryController::class,
     ], function () {
         Route::get('/', 'index')->name('category.index');
+        Route::post('/store', 'store')->name('category.store');
     });
 });
 
