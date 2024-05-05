@@ -2,7 +2,10 @@
 
 @section('content')
     <div class="d-flex justify-content-between px-3">
-        <strong>PRODUCT</strong>
+        <div>
+            <a href="{{ route('category.index') }}" class="btn btn-secondary px-2 py-1">&LeftArrow;</a>
+            <strong>PRODUCT</strong>
+        </div>
         <div>
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createModal">
                 add
