@@ -25,9 +25,9 @@ class CategoryController extends Controller
         // return $request;
         $category = new Category($request->validated());
         if($category->save()){
-            return redirect()->route('category.index');
+            return redirect()->back();
         } else {
-            return redirect()->route('category.index');
+            return redirect()->back();
         }
     }
 

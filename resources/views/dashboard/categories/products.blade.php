@@ -52,7 +52,7 @@
 
                                     <!-- Modal footer -->
                                     <div class="modal-footer">
-                                        <a href=""
+                                        <a href="{{ route('product.destroy', ['product' => $product->id]) }}"
                                             class="btn btn-danger mx-1">delete</a>
 
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
