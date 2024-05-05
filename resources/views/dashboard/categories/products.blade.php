@@ -2,9 +2,8 @@
 
 @section('content')
     <div class="d-flex justify-content-between px-3">
-        <strong>CATEGORIES</strong>
+        <strong>PRODUCT</strong>
         <div>
-            {{-- <a href="{{ route('category.add') }}" class="btn btn-success">add</a> --}}
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createModal">
                 add
             </button>
@@ -13,44 +12,47 @@
     <table class="table table-striped">
         <thead>
             <tr>
+                <th>image</th>
                 <th>name</th>
                 <th>description</th>
-                <th>products</th>
+                <th>price</th>
+                <th>discount</th>
                 <th>procedures</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($categories as $category)
+            @foreach ($category->products as $product)
                 <tr>
-                    <td>{{ $category->name }}</td>
-                    <td>{{ $category->description }}</td>
                     <td></td>
+                    <td>{{ $product->name }}</td>
+                    <td>{{ $product->description }}</td>
+                    <td>{{ $product->price }}</td>
+                    <td>{{ $product->discount_percent }}</td>
                     <td>
                         <button type="button" class="btn btn-danger" data-toggle="modal"
-                            data-target="#deleteModal{{ $category->id }}">
+                            data-target="#deleteModal{{ $product->id }}">
                             delete
                         </button>
-                        <a href="{{route('category.show',['category' => $category->id])}}" class="btn btn-secondary">products</a>
                         <!-- The Modal -->
-                        <div class="modal" id="deleteModal{{ $category->id }}">
+                        <div class="modal" id="deleteModal{{ $product->id }}">
                             <div class="modal-dialog">
                                 <div class="modal-content">
 
                                     <!-- Modal Header -->
                                     <div class="modal-header">
-                                        <h4 class="modal-title">DELETE CATEGORY</h4>
+                                        <h4 class="modal-title">DELETE PRODUCT</h4>
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
                                     <!-- Modal body -->
                                     <div class="modal-body">
                                         <div class="row px-3">
-                                            Are you sure you want to delete the category?
+                                            Are you sure you want to delete the product?
                                         </div>
                                     </div>
 
                                     <!-- Modal footer -->
                                     <div class="modal-footer">
-                                        <a href="{{ route('category.destroy', ['category' => $category->id]) }}"
+                                        <a href=""
                                             class="btn btn-danger mx-1">delete</a>
 
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -73,11 +75,11 @@
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">ADD CATEGORY</h4>
+                    <h4 class="modal-title">ADD PRODUCT</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
-                <form method="POST" action="{{ route('category.store') }}">
+                <form method="POST" action="">
                     @csrf
                     <!-- Modal body -->
                     <div class="modal-body">
