@@ -40,6 +40,14 @@ class Category extends Model
         
     ];
 
+    protected $appends = [
+        'products_count',
+    ];
+
+    public function getProductsCountAttribute(){
+        return $this->products()->count();
+    }
+
     // ********************** relationships ********************
 
     public function products() {

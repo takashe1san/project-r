@@ -29,6 +29,7 @@ Route::group([
     ], function () {
         Route::get('/', 'index')->name('category.index');
         Route::post('/store', 'store')->name('category.store');
+        Route::post('/update/{category}', 'update')->name('category.update');
         Route::get('/{category}/products', 'show')->name('category.show');
         Route::get('/destroy/{category}', 'destroy')->name('category.destroy');
     });
