@@ -17,7 +17,7 @@
             <tr>
                 <th>image</th>
                 <th>name</th>
-                <th>description</th>
+                <th>discription</th>
                 <th>price</th>
                 <th>discount</th>
                 <th>procedures</th>
@@ -26,9 +26,9 @@
         <tbody>
             @foreach ($category->products as $product)
                 <tr>
-                    <td></td>
+                    <td><img src="{{asset($product->image)}}" alt="image" width="50"></td>
                     <td>{{ $product->name }}</td>
-                    <td>{{ $product->description }}</td>
+                    <td>{{ $product->discription }}</td>
                     <td>{{ $product->price }}</td>
                     <td>{{ $product->discount_percent }}</td>
                     <td>
@@ -82,15 +82,22 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
-                <form method="POST" action="">
+                <form method="POST" enctype="multipart/form-data" action="{{ route('product.store', ['category' => $category->id]) }}">
                     @csrf
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="row">
+                            image
+                            <input type="file" class="form-control mb-3" id="image" placeholder="Enter image"
+                                name="image">
                             <input type="text" class="form-control" id="name" placeholder="Enter name"
                                 name="name">
-                            <textarea name="description" class="form-control px-3" id="description" cols="30" rows="10"
-                                placeholder="Enter description"></textarea>
+                            <textarea name="discription" class="form-control px-3" id="discription" cols="30" rows="10"
+                                placeholder="Enter discription"></textarea>
+                            <input type="number" class="form-control" id="price" placeholder="Enter price"
+                                name="price">
+                            <input type="number" class="form-control" id="discount" placeholder="Enter discount"
+                                name="discount_percent" min="0" max="99">
                         </div>
                     </div>
 

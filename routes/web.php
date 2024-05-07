@@ -37,6 +37,7 @@ Route::group([
         'prefix' => 'products',
         'controller' => ProductController::class,
     ], function () {
+        Route::post('/{category}/store', 'store')->name('product.store');
         Route::get('/destroy/{product}', 'destroy')->name('product.destroy');
     });
 });
