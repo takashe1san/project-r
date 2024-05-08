@@ -31,14 +31,6 @@ class ProductController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Product $product)
-    {
-        //
-    }
-
     public function changeImage(ChangeProductImageRequest $request, Product $product){
         // return $product;
         if($product->update($request->validated())){
@@ -49,19 +41,16 @@ class ProductController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Product $product)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        // return $request;
+        if($product->update($request->validated())){
+            return redirect()->back();
+        } else {
+            return redirect()->back();
+        }
     }
 
     /**

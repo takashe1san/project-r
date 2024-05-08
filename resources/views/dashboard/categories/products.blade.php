@@ -39,6 +39,10 @@
                             data-target="#deleteModal{{ $product->id }}">
                             delete
                         </button>
+                        <button type="button" class="btn btn-info" data-toggle="modal"
+                            data-target="#editModal{{ $product->id }}">
+                            edit
+                        </button>
                         <!-- The Modal -->
                         <div class="modal" id="deleteModal{{ $product->id }}">
                             <div class="modal-dialog">
@@ -86,12 +90,52 @@
 
                                     <!-- Modal footer -->
                                     <div class="modal-footer">
-                                        <form action="{{ route('product.changeImage', ['product' => $product->id]) }}" class="mx-3" enctype="multipart/form-data" method="post">
+                                        <form action="{{ route('product.changeImage', ['product' => $product->id]) }}"
+                                            class="mx-3" enctype="multipart/form-data" method="post">
                                             @csrf
                                             <input type="file" name="image">
                                             <button type="submit" class="btn btn-success">Change</button>
                                         </form>
                                     </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- The Modal -->
+                        <div class="modal" id="editModal{{ $product->id }}">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">EDIT PRODUCT</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+
+                                    <form method="POST" action="{{ route('product.update', ['product' => $product->id]) }}">
+                                        @csrf
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <input type="text" class="form-control" id="name"
+                                                    placeholder="Enter name" name="name" value="{{ $product->name }}">
+                                                <textarea name="discription" class="form-control px-3" id="discription" cols="30" rows="10"
+                                                    placeholder="Enter discription">{{ $product->discription }}</textarea>
+                                                <input type="number" class="form-control" id="price"
+                                                    placeholder="Enter price" name="price" value="{{ $product->price }}">
+                                                <input type="number" class="form-control" id="discount"
+                                                    placeholder="Enter discount" name="discount_percent" min="0"
+                                                    max="99" value="{{ $product->discount_percent }}">
+                                            </div>
+                                        </div>
+
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-info">Edit</button>
+                                            <button type="button" class="btn btn-danger"
+                                                data-dismiss="modal">Close</button>
+                                        </div>
                                     </form>
 
                                 </div>

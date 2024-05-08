@@ -11,7 +11,7 @@ class UpdateProductRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class UpdateProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['string'],
+            'discription' => ['nullable', 'string'],
+            'price' => ['decimal:2'],
+            'discount_percent' => ['nullable', 'integer', 'between:0,99'],
         ];
     }
 }
