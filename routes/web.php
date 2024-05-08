@@ -38,6 +38,7 @@ Route::group([
         'controller' => ProductController::class,
     ], function () {
         Route::post('/{category}/store', 'store')->name('product.store');
+        Route::post('/{product}/change-image', 'changeImage')->name('product.changeImage');
         Route::get('/destroy/{product}', 'destroy')->name('product.destroy');
     });
 });

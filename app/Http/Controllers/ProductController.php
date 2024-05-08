@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ChangeProductImageRequest;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
@@ -36,6 +37,15 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         //
+    }
+
+    public function changeImage(ChangeProductImageRequest $request, Product $product){
+        // return $product;
+        if($product->update($request->validated())){
+            return redirect()->back();
+        } else {
+            return redirect()->back();
+        }
     }
 
     /**

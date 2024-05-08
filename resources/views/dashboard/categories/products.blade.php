@@ -26,7 +26,10 @@
         <tbody>
             @foreach ($category->products as $product)
                 <tr>
-                    <td><img src="{{asset($product->image)}}" alt="image" width="50"></td>
+                    <td>
+                        <img src="{{ asset($product->image) }}" alt="image" width="50" data-toggle="modal"
+                            data-target="#imageModal{{ $product->id }}">
+                    </td>
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->discription }}</td>
                     <td>{{ $product->price }}</td>
@@ -58,7 +61,36 @@
                                         <a href="{{ route('product.destroy', ['product' => $product->id]) }}"
                                             class="btn btn-danger mx-1">delete</a>
 
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Cancel</button>
+                                    </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- The Modal -->
+                        <div class="modal" id="imageModal{{ $product->id }}">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">PRODUCT IMAGE</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+                                        <img src="{{ asset($product->image) }}" alt="image">
+                                    </div>
+
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                        <form action="{{ route('product.changeImage', ['product' => $product->id]) }}" class="mx-3" enctype="multipart/form-data" method="post">
+                                            @csrf
+                                            <input type="file" name="image">
+                                            <button type="submit" class="btn btn-success">Change</button>
+                                        </form>
                                     </div>
                                     </form>
 
@@ -82,7 +114,8 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
-                <form method="POST" enctype="multipart/form-data" action="{{ route('product.store', ['category' => $category->id]) }}">
+                <form method="POST" enctype="multipart/form-data"
+                    action="{{ route('product.store', ['category' => $category->id]) }}">
                     @csrf
                     <!-- Modal body -->
                     <div class="modal-body">
