@@ -32,8 +32,12 @@
         <div class="container">
             <div class="col-md-6 col-sm-6 col-xs-8">
                 <div class="icons">
-                    {{-- <span><a href="{{ route('web.login') }}"><i class="fa fa-user" aria-hidden="true"></i></a></span> --}}
-                    <span><a href="your-order.html"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></span>
+                    @auth
+                        <span><a href="{{route('logout')}}"><i class="fa fa-sign-out-alt" aria-hidden="true"></i></a></span>
+                        {{-- <span><a href="your-order.html"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></span> --}}
+                    @else
+                        <span><a href="{{ route('login') }}"><i class="fa fa-sign-in-alt" aria-hidden="true"></i></a></span>
+                    @endauth
                 </div>
             </div>
             <div class="col-md-6 col-sm-6 col-xs-4">
