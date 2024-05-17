@@ -29,6 +29,12 @@ Route::group([
 });
 
 Route::group([
+    'prefix' => 'cart',
+], function() {
+    
+});
+
+Route::group([
     'prefix' => 'dashboard',
 ], function () {
     Route::get('/', [DashboardController::class, 'index']);
