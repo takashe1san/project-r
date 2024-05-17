@@ -32,6 +32,24 @@ class Product extends Model
         
     ];
 
+    protected $appends = [
+        'discounted_price',
+    ];
+
+    public function getDiscountedPriceAttribute() {
+        $discounted_price = ($this->hasDiscount()) ? $this->calculateDiscount() : null;
+        return $discounted_price;
+    }
+
+    public function hasDiscount() : bool {
+        return (!is_null($this->discount_percent));
+    }
+
+    private function calculateDiscount() {
+        $discounted_price = $this->price - ($this->price / 100 * $this->discount_percent);
+        return $discounted_price;
+    }
+
     // ********************** relationships ********************
 
     public function category() {
