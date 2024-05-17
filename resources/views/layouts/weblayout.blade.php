@@ -12,8 +12,8 @@
     </title>
     <!-- Favicon and Apple Icons -->
     <link rel="shortcut icon" href="{{ asset('../assets/images/favicon.png') }}">
-    <link href="https://fonts.googleapis.com/css?family=Tajawal:300,400,500,700,800,900&amp;display=swap"
-        rel="stylesheet">
+    {{-- <link href="https://fonts.googleapis.com/css?family=Tajawal:300,400,500,700,800,900&amp;display=swap"
+        rel="stylesheet"> --}}
     {{-- <link href="{{ asset('../assets/style/homelayout.css') }}" rel="stylesheet" type="text/css" /> --}}
     <link href="{{ asset('../assets/css/style.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('../assets/css/bootstrap-rtl.min.css') }}" rel="stylesheet" type="text/css" />

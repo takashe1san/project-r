@@ -59,14 +59,20 @@
                                             data-wow-delay=".3s">
                                             <a href="" class="block-courses">
                                                 <div class="img"
-                                                    style="background-image: url({{ asset($product->image) }})">
+                                                    style="background-image: url({{ asset($product->image) }})" loading="lazy">
                                                 </div>
                                                 <div class="details">
                                                     <div class="col-md-5 col-xs-12">
-
+                                                        @if ($product->hasDiscount())
                                                         <div class="price-m">
-                                                            <span>{{ $product->price }} ل.س</span>
-                                                        </div>
+                                                                <s class="text-danger">{{ $product->price }}</s>
+                                                                <span>{{ $product->discounted_price }} ل.س</span>
+                                                            </div>
+                                                        @else
+                                                            <div class="price-m">
+                                                                <span>{{ $product->price }} ل.س</span>
+                                                            </div>
+                                                        @endif
                                                     </div>
                                                     <div class="col-md-7 col-xs-12">
                                                         <div class="name-course">
@@ -100,7 +106,7 @@
             </div>
             <div class="col-xs-12 padding">
 
-                <div class="col-md-4 col-xs-12">
+                {{-- <div class="col-md-4 col-xs-12">
                     <a href="assets/images/123.png" data-fancybox="gallery" class="block-gallery">
                         <div class="img" style="background-image: url(assets/images/123.png)"></div>
                     </a>
@@ -118,7 +124,7 @@
                     <a href="assets/images/سلطة-خضراء.jpg" data-fancybox="gallery" class="block-gallery">
                         <div class="img" style="background-image: url(assets/images/سلطة-خضراء.jpg)"></div>
                     </a>
-                </div>
+                </div> --}}
             </div>
 
             <div class="col-xs-12">
