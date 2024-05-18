@@ -16,6 +16,7 @@ return new class extends Migration
             $table->tinyInteger('quantity');
             $table->decimal('total_price');
             $table->foreignId('product_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->string('notes')->nullable();
             $table->timestamps();
         });
