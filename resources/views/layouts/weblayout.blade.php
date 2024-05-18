@@ -20,7 +20,7 @@
     <link href="{{ asset('../assets/css/mobile.css') }}" rel="stylesheet" type="text/css" />
     <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
     <meta name="generator" content="WordPress 6.3.2" />
-    
+
 </head>
 
 <body data-rsssl=1>
@@ -114,16 +114,73 @@
                             </div>
                         </div>
                         <div class="navbar-left">
-                            <div class="Lang-b">
-                                <a href="order/index.html" class="btn">أحجز طلبك</a>
-                            </div>
+                            @auth
+                                <div class="Lang-b">
+                                    <a href="" class="btn btn-warning" style="padding: 0 41px" data-toggle="modal"
+                                        data-target="#cartModal">السلة</a>
+                                </div>
+
+                            @endauth
                         </div>
                     </div>
+                    @auth
+                        <!-- The Modal -->
+                        <div class="modal" id="cartModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">السلة</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>المنتج</th>
+                                                        <th>الكمية</th>
+                                                        <th>المجموع</th>
+                                                        <th>عمليات</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (auth()->user()->cart as $cartItem)
+                                                        <tr>
+                                                            <td>{{ $cartItem->product->name }}</td>
+                                                            <td>{{ $cartItem->quantity }}</td>
+                                                            <td>{{ $cartItem->total_price }}</td>
+                                                            <td><a href="" class="" style="padding: 0 20px"><i class='fa fa-trash'></i></a></td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
+                                        <button type="submit" class="btn btn-success">أطلب</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    @endauth
                     <!-- Satrt Responsive -->
                     <div class="responsive">
-                        <div class="col-xs-6">
-                            <a href="order/index.html" class="btn">أحجز طلبك</a>
-                        </div>
+                        @auth
+                            <div class="col-xs-6">
+                                <a href="order/index.html" class="btn btn-warning" style="padding: 0 41px" data-toggle="modal"
+                                    data-target="#cartModal">السلة</a>
+                            </div>
+
+
+                        @endauth
                         <div class="col-xs-6">
                             <div class="navbar-left">
                                 <div class="btn-more-menu">
