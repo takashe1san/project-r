@@ -31,10 +31,11 @@ class CartController extends Controller
     public function store(StoreCartRequest $request, Product $product)
     {
         // return $product;
-        $cart = new Cart([
-            'quantity' => $request->quantity,
+        $cart = Cart::firstOrNew([
+            'user_id' => auth()->id(),
             'product_id' => $product->id,
         ]);
+        $cart->quantity = (is_null($cart->quantity)) ? $request->quantity : $cart->quantity + $request->quantity;
         if($cart->save()){
             return redirect()->back()->with(['m-color' => 'success', 'message' => 'تمت أضافة "' . $product->name . '" إلى السلة.', 'm-dir' => 'rtl']);
         } else {

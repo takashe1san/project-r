@@ -13,7 +13,9 @@ class Cart extends Model
         parent::boot();
         static::creating(function (Cart $cart){
             $cart->total_price = $cart->product->getPrice() * $cart->quantity;
-            $cart->user_id = auth()->id();
+        });
+        static::updating(function (Cart $cart){
+            $cart->total_price = $cart->product->getPrice() * $cart->quantity;
         });
     }
 
