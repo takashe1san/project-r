@@ -48,7 +48,7 @@ class CartController extends Controller
                 return redirect()->back()->with(['m-color' => 'danger', 'message' => 'فشل حذف العنصر من السلة.', 'm-dir' => 'rtl']);
             }
         } else {
-            return redirect()->back()->with(['m-color' => 'danger', 'message' => 'لم يتم العثور على العنصر']);
+            return redirect()->back()->with(['m-color' => 'danger', 'message' => 'لم يتم العثور على العنصر', 'm-dir' => 'rtl']);
         }
     }
 }
