@@ -20,9 +20,11 @@
     <link href="{{ asset('../assets/css/mobile.css') }}" rel="stylesheet" type="text/css" />
     <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
     <meta name="generator" content="WordPress 6.3.2" />
+    
 </head>
 
 <body data-rsssl=1>
+    @include('includes.message')
     <!-- Start Loader -->
     <!-- <div class="loader">
         <div class="img-load"></div>
@@ -33,7 +35,8 @@
             <div class="col-md-6 col-sm-6 col-xs-8">
                 <div class="icons">
                     @auth
-                        <span><a href="{{route('logout')}}"><i class="fa fa-sign-out-alt" aria-hidden="true"></i></a></span>
+                        <span><a href="{{ route('logout') }}"><i class="fa fa-sign-out-alt"
+                                    aria-hidden="true"></i></a></span>
                         {{-- <span><a href="your-order.html"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></span> --}}
                     @else
                         <span><a href="{{ route('login') }}"><i class="fa fa-sign-in-alt" aria-hidden="true"></i></a></span>
@@ -518,6 +521,9 @@
                         unitprice: 35.0
                     }
                 ];
+                setTimeout(function() {
+                    $('#myToast').fadeOut();
+                }, 5000);
             </script>
             @yield('scripts')
 

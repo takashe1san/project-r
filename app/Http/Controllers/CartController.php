@@ -31,14 +31,14 @@ class CartController extends Controller
     public function store(StoreCartRequest $request, Product $product)
     {
         // return $product;
-        $cart = Cart::create([
+        $cart = new Cart([
             'quantity' => $request->quantity,
             'product_id' => $product->id,
         ]);
         if($cart->save()){
-            return redirect()->back();
+            return redirect()->back()->with(['m-color' => 'success', 'message' => 'تمت أضافة "' . $product->name . '" إلى السلة.', 'm-dir' => 'rtl']);
         } else {
-            return redirect()->back();
+            return redirect()->back()->with(['m-color' => 'danger', 'message' => 'فشلت إضافة المنتج إلى السلة.', 'm-dir' => 'rtl']);
         }
     }
 

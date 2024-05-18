@@ -26,6 +26,7 @@
 </head>
 
 <body class="">
+    @include('includes.message');
     <div class="wrapper ">
         <div class="sidebar" data-color="orange">
             <!--Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"-->
@@ -155,6 +156,11 @@
     <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('../assets/js/now-ui-dashboard.min.js?v=1.5.0') }}" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
     <script src="{{ asset('../assets/demo/demo.js') }}"></script>
+    <script>
+        setTimeout(function() {
+            $('#myToast').fadeOut();
+        }, 5000);
+    </script>
     @yield('scripts')
 </body>
 
