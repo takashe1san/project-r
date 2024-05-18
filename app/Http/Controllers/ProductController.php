@@ -25,18 +25,18 @@ class ProductController extends Controller
     {
         // return $category;
         if($category->products()->create($request->validated())){
-            return redirect()->back();
+            return redirect()->back()->with(['m-color' => 'success', 'message' => 'product stored successfully', 'm-dir' => 'ltr']);
         } else {
-            return redirect()->back();
+            return redirect()->back()->with(['m-color' => 'danger', 'message' => 'failed to store product', 'm-dir' => 'ltr']);
         }
     }
 
     public function changeImage(ChangeProductImageRequest $request, Product $product){
         // return $product;
         if($product->update($request->validated())){
-            return redirect()->back();
+            return redirect()->back()->with(['m-color' => 'success', 'message' => 'product image changed successfully', 'm-dir' => 'ltr']);
         } else {
-            return redirect()->back();
+            return redirect()->back()->with(['m-color' => 'danger', 'message' => 'failed to change product image', 'm-dir' => 'ltr']);
         }
     }
 
@@ -47,9 +47,9 @@ class ProductController extends Controller
     {
         // return $request;
         if($product->update($request->validated())){
-            return redirect()->back();
+            return redirect()->back()->with(['m-color' => 'success', 'message' => 'product updated successfully', 'm-dir' => 'ltr']);
         } else {
-            return redirect()->back();
+            return redirect()->back()->with(['m-color' => 'danger', 'message' => 'failed to update product', 'm-dir' => 'ltr']);
         }
     }
 
@@ -59,7 +59,9 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         if($product->delete()){
-            return redirect()->back();
+            return redirect()->back()->with(['m-color' => 'success', 'message' => 'product deleted successfully', 'm-dir' => 'ltr']);
+        } else {
+            return redirect()->back()->with(['m-color' => 'danger', 'message' => 'failed to delete product', 'm-dir' => 'ltr']);
         }
     }
 }

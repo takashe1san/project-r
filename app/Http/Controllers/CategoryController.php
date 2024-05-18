@@ -26,9 +26,9 @@ class CategoryController extends Controller
         // return $request;
         $category = new Category($request->validated());
         if($category->save()){
-            return redirect()->back();
+            return redirect()->back()->with(['m-color' => 'success', 'message' => 'category added successfully.', 'm-dir' => 'ltr']);
         } else {
-            return redirect()->back();
+            return redirect()->back()->with(['m-color' => 'danger', 'message' => 'failed to add category', 'm-dir' => 'ltr']);
         }
     }
 
@@ -49,9 +49,9 @@ class CategoryController extends Controller
         // return $category;
         // return $request->validated();
         if($category->update($request->validated())){
-            return redirect()->back();
+            return redirect()->back()->with(['m-color' => 'success', 'message' => 'category updated successfully', 'm-dir' => 'ltr']);
         } else {
-            return redirect()->back();
+            return redirect()->back()->with(['m-color' => 'danger', 'message' => 'failed to update category', 'm-dir' => 'ltr']);
         }
     }
 
@@ -62,9 +62,9 @@ class CategoryController extends Controller
     {
         // return $category;
         if($category->delete()){
-            return redirect()->route('category.index');
+            return redirect()->route('category.index')->with(['m-color' => 'success', 'message' => 'category deleted successfully', 'm-dir' => 'ltr']);
         } else {
-            return redirect()->route('category.index');
+            return redirect()->route('category.index')->with(['m-color' => 'danger', 'message' => 'failed to delete category', 'm-dir' => 'ltr']);
         }
     }
 }

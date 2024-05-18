@@ -26,7 +26,6 @@
 </head>
 
 <body class="">
-    @include('includes.message');
     <div class="wrapper ">
         <div class="sidebar" data-color="orange">
             <!--Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"-->
@@ -75,6 +74,8 @@
         </div>
 
         <div class="main-panel" id="main-panel">
+            @include('includes.message')
+
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
                 <div class="container-fluid">
