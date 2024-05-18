@@ -13,6 +13,7 @@ class Cart extends Model
         parent::boot();
         static::creating(function (Cart $cart){
             $cart->total_price = $cart->product->getPrice() * $cart->quantity;
+            $cart->user_id = auth()->id();
         });
     }
 
@@ -22,6 +23,7 @@ class Cart extends Model
         'quantity',
         'total_price',
         'product_id',
+        'user_id'
     ];
 
     
@@ -37,6 +39,10 @@ class Cart extends Model
     // ********************** relationships ********************
     public function product() {
         return $this->belongsTo(Product::class);
+    }
+
+    public function owner() {
+        return $this->belongsTo(User::class);
     }
 
 }
