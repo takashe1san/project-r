@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
@@ -30,8 +31,9 @@ Route::group([
 
 Route::group([
     'prefix' => 'cart',
+    'controller' => CartController::class,
 ], function() {
-    
+    Route::post('store/{product}', 'store')->name('cart.store');
 });
 
 Route::group([

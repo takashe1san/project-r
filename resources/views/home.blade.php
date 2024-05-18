@@ -57,14 +57,16 @@
                                     @foreach ($category->products as $product)
                                         <div class="col-md-4 col-xs-12 wow fadeIn" data-wow-duration="1.1s"
                                             data-wow-delay=".3s">
-                                            <a href="" class="block-courses">
+                                            <a class="block-courses" data-toggle="modal"
+                                                data-target="#addToCartModal{{ $product->id }}">
                                                 <div class="img"
-                                                    style="background-image: url({{ asset($product->image) }})" loading="lazy">
+                                                    style="background-image: url({{ asset($product->image) }})"
+                                                    loading="lazy">
                                                 </div>
                                                 <div class="details">
                                                     <div class="col-md-5 col-xs-12">
                                                         @if ($product->hasDiscount())
-                                                        <div class="price-m">
+                                                            <div class="price-m">
                                                                 <s class="text-danger">{{ $product->price }}</s>
                                                                 <span>{{ $product->discounted_price }} ل.س</span>
                                                             </div>
@@ -84,6 +86,45 @@
                                                     </div>
                                                 </div>
                                             </a>
+                                            <!-- The Modal -->
+                                            <div class="modal" id="addToCartModal{{ $product->id }}">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+
+                                                        <!-- Modal Header -->
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">ADD TO CART</h4>
+                                                            <button type="button" class="close"
+                                                                data-dismiss="modal">&times;</button>
+                                                        </div>
+
+                                                        <form method="POST"
+                                                            action="{{route('cart.store', ['product' => $product->id])}}">
+                                                            @csrf
+                                                            <!-- Modal body -->
+                                                            <div class="modal-body">
+                                                                <div class="row">
+
+                                                                    Quantity
+                                                                    <input type="number" class="form-control"
+                                                                        placeholder="Enter quantity"
+                                                                        name="quantity" min="0"
+                                                                        max="25"
+                                                                        value=1>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- Modal footer -->
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-info">Add</button>
+                                                                <button type="button" class="btn btn-danger"
+                                                                    data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </form>
+
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     @endforeach
                                 </div>

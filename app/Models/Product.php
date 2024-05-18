@@ -50,6 +50,11 @@ class Product extends Model
         return $discounted_price;
     }
 
+    public function getPrice() {
+        $finalPrice = ($this->hasDiscount()) ? $this->discounted_price : $this->price;
+        return $finalPrice;
+    }
+
     // ********************** relationships ********************
 
     public function category() {

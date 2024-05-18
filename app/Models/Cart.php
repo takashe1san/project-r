@@ -9,6 +9,13 @@ class Cart extends Model
 {
     use HasFactory;
 
+    public static function boot() {
+        parent::boot();
+        static::creating(function (Cart $cart){
+            $cart->total_price = $cart->product->getPrice() * $cart->quantity;
+        });
+    }
+
     protected $table = 'cart_items';
     
     protected $fillable = [
@@ -28,6 +35,8 @@ class Cart extends Model
     ];
 
     // ********************** relationships ********************
-
+    public function product() {
+        return $this->belongsTo(Product::class);
+    }
 
 }

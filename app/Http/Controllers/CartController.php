@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Http\Requests\StoreCartRequest;
 use App\Http\Requests\UpdateCartRequest;
+use App\Models\Product;
 
 class CartController extends Controller
 {
@@ -27,9 +28,18 @@ class CartController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCartRequest $request)
+    public function store(StoreCartRequest $request, Product $product)
     {
-        //
+        // return $product;
+        $cart = Cart::create([
+            'quantity' => $request->quantity,
+            'product_id' => $product->id,
+        ]);
+        if($cart->save()){
+            return redirect()->back();
+        } else {
+            return redirect()->back();
+        }
     }
 
     /**
