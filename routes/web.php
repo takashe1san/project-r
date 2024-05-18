@@ -35,6 +35,7 @@ Route::group([
     'middleware' => 'auth',
 ], function() {
     Route::post('store/{product}', 'store')->name('cart.store');
+    Route::get('destroy/{cartItem}', 'destroy')->name('cart.destroy');
 });
 
 Route::group([

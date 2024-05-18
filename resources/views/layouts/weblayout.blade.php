@@ -153,7 +153,7 @@
                                                             <td>{{ $cartItem->product->name }}</td>
                                                             <td>{{ $cartItem->quantity }}</td>
                                                             <td>{{ $cartItem->total_price }}</td>
-                                                            <td><a href="" class="" style="padding: 0 20px"><i class='fa fa-trash'></i></a></td>
+                                                            <td><a href="{{route('cart.destroy', ['cartItem' => $cartItem->id])}}" class="" style="padding: 0 20px"><i class='fa fa-trash'></i></a></td>
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
