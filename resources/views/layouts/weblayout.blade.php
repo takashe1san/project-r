@@ -153,7 +153,9 @@
                                                             <td>{{ $cartItem->product->name }}</td>
                                                             <td>{{ $cartItem->quantity }}</td>
                                                             <td>{{ $cartItem->total_price }}</td>
-                                                            <td><a href="{{route('cart.destroy', ['cartItem' => $cartItem->id])}}" class="" style="padding: 0 20px"><i class='fa fa-trash'></i></a></td>
+                                                            <td><a href="{{ route('cart.destroy', ['cartItem' => $cartItem->id]) }}"
+                                                                    class="" style="padding: 0 20px"><i
+                                                                        class='fa fa-trash'></i></a></td>
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
@@ -163,9 +165,45 @@
 
                                     <!-- Modal footer -->
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
-                                        <button type="submit" class="btn btn-success">أطلب</button>
+                                        {{-- <form action="{{route('order.store')}}" method="post">
+                                            @csrf --}}
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">إغلاق</button>
+                                        <button type="button" class="btn btn-success" data-toggle="modal"
+                                            data-target="#orderModal">أطلب</button>
+                                        {{-- </form> --}}
                                     </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- The Modal -->
+                        <div class="modal" id="orderModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">تقديم طلب</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+
+                                    <form action="{{ route('order.store') }}" method="post">
+                                        @csrf
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <input type="text" class="form-control" name="address" placeholder="Address" required>
+                                            </div>
+                                        </div>
+
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">إغلاق</button>
+                                            <button type="submit" class="btn btn-success">ارسل</button>
+                                        </div>
+                                    </form>
 
                                 </div>
                             </div>
@@ -175,8 +213,8 @@
                     <div class="responsive">
                         @auth
                             <div class="col-xs-6">
-                                <a href="order/index.html" class="btn btn-warning" style="padding: 0 41px" data-toggle="modal"
-                                    data-target="#cartModal">السلة</a>
+                                <a href="order/index.html" class="btn btn-warning" style="padding: 0 41px"
+                                    data-toggle="modal" data-target="#cartModal">السلة</a>
                             </div>
 
 

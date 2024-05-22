@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{AuthController, CartController, CategoryController, DashboardController, HomeController, ProductController};
+use App\Http\Controllers\{AuthController, CartController, CategoryController, DashboardController, HomeController, OrderController, ProductController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +31,14 @@ Route::group([
 ], function() {
     Route::post('store/{product}', 'store')->name('cart.store');
     Route::get('destroy/{cartItem}', 'destroy')->name('cart.destroy');
+});
+
+Route::group([
+    'prefix' => 'order',
+    'controller' => OrderController::class,
+    'middleware' => 'auth',
+], function() {
+    Route::post('store', 'store')->name('order.store');
 });
 
 Route::group([

@@ -38,6 +38,11 @@ class Cart extends Model
         
     ];
 
+    public static function userCart(){
+        $cart = self::where('user_id',auth()->id())->get();
+        return $cart;
+    }
+
     // ********************** relationships ********************
     public function product() {
         return $this->belongsTo(Product::class);
