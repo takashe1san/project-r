@@ -15,12 +15,13 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
-        if(isset($request->status)){
-            $orders = Order::where('status', $request->status)->with(['items', 'owner'])->orderBy('created_at', 'desc')->take(25)->get();
-        } else {
-            $orders = Order::with(['items', 'owner'])->orderBy('created_at', 'desc')->take(25)->get();
+        $orders = Order::orderBy('created_at', 'desc')->take(25);
 
+        if(isset($request->status)){
+            $orders = $orders->where('status', $request->status);
         }
+
+        $orders = $orders->get();
         // return $orders;
         return view('dashboard.orders.index', compact('orders'));
     }

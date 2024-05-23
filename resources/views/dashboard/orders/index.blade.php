@@ -3,32 +3,33 @@
 @section('content')
     <div class="d-flex justify-content-between px-3">
         <strong>ORDERS</strong>
-        <div>
-            {{-- <a href="{{ route('category.add') }}" class="btn btn-success">add</a> --}}
-            {{-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createModal">
-                add
-            </button> --}}
+        <div class="d-flex">
+            
+            @if (request('status') !== null)
+                <a href="{{ route('order.index') }}" class="btn btn-secondary px-2 py-1">X</a>
+            @endif
             <select class="form-control bg-light" onchange="location = this.value">
                 <option value="">filter</option>
-                <option value="{{route('order.index', ['status' => App\Enums\OrderStatusEnum::PENDING->value])}}">
+                <option value="{{ route('order.index', ['status' => App\Enums\OrderStatusEnum::PENDING->value]) }}">
                     معلق
                 </option>
-                <option value="{{route('order.index', ['status' => App\Enums\OrderStatusEnum::PREPARING->value])}}">
+                <option value="{{ route('order.index', ['status' => App\Enums\OrderStatusEnum::PREPARING->value]) }}">
                     يتم تجهيزه
                 </option>
-                <option value="{{route('order.index', ['status' => App\Enums\OrderStatusEnum::ONTHEWAY->value])}}">
+                <option value="{{ route('order.index', ['status' => App\Enums\OrderStatusEnum::ONTHEWAY->value]) }}">
                     في الطريق
                 </option>
-                <option value="{{route('order.index', ['status' => App\Enums\OrderStatusEnum::COMPLATED->value])}}">
+                <option value="{{ route('order.index', ['status' => App\Enums\OrderStatusEnum::COMPLATED->value]) }}">
                     مكتمل
                 </option>
-                <option value="{{route('order.index', ['status' => App\Enums\OrderStatusEnum::CANCELED->value])}}">
+                <option value="{{ route('order.index', ['status' => App\Enums\OrderStatusEnum::CANCELED->value]) }}">
                     ملغي
                 </option>
-                <option value="{{route('order.index', ['status' => App\Enums\OrderStatusEnum::REJECTED->value])}}">
+                <option value="{{ route('order.index', ['status' => App\Enums\OrderStatusEnum::REJECTED->value]) }}">
                     مرفوض
                 </option>
             </select>
+
         </div>
     </div>
     <table class="table table-striped">
@@ -47,7 +48,8 @@
                     <td class="text-center">{{ $order->owner->name }}</td>
                     <td class="text-center">{{ $order->total }}</td>
                     <td class="text-center">{{ $order->items->count() }}</td>
-                    <td class="bg-{{$order->status_details['color']}} text-light text-center">{{ $order->status_details['value'] }}</td>
+                    <td class="bg-{{ $order->status_details['color'] }} text-light text-center">
+                        {{ $order->status_details['value'] }}</td>
                     <td>
                         {{-- <button type="button" class="btn btn-danger" data-toggle="modal"
                             data-target="#deleteModal{{ $category->id }}">
@@ -128,5 +130,4 @@
             @endforeach
         </tbody>
     </table>
-
 @endsection
