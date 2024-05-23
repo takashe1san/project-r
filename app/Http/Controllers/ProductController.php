@@ -31,7 +31,8 @@ class ProductController extends Controller
         }
     }
 
-    public function changeImage(ChangeProductImageRequest $request, Product $product){
+    public function changeImage(ChangeProductImageRequest $request, Product $product)
+    {
         // return $product;
         if($product->update($request->validated())){
             return redirect()->back()->with(['m-color' => 'success', 'message' => 'product image changed successfully', 'm-dir' => 'ltr']);

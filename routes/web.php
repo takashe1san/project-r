@@ -64,6 +64,12 @@ Route::group([
         Route::post('/{product}/change-image', 'changeImage')->name('product.changeImage');
         Route::get('/destroy/{product}', 'destroy')->name('product.destroy');
     });
+    Route::group([
+        'prefix' => 'orders',
+        'controller' => OrderController::class,
+    ],function () {
+        Route::get('/', 'index')->name('order.index');
+    });
 });
 
 Route::get('/test', function() {

@@ -6,15 +6,23 @@ use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if(isset($request->status)){
+            $orders = Order::where('status', $request->status)->with(['items', 'owner'])->orderBy('created_at', 'desc')->take(25)->get();
+        } else {
+            $orders = Order::with(['items', 'owner'])->orderBy('created_at', 'desc')->take(25)->get();
+
+        }
+        // return $orders;
+        return view('dashboard.orders.index', compact('orders'));
     }
 
     /**
