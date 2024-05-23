@@ -28,6 +28,8 @@ class OrderItem extends Model
     ];
 
     // ********************** relationships ********************
-
+    public function product() {
+        return $this->belongsTo(Product::class);
+    }
 
 }

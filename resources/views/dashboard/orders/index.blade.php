@@ -47,7 +47,7 @@
                 <tr>
                     <td class="text-center" data-toggle="modal" data-target="#ownerModal{{ $order->id }}">{{ $order->owner->name }}</td>
                     <td class="text-center">{{ $order->total }}</td>
-                    <td class="text-center">{{ $order->items->count() }}</td>
+                    <td class="text-center"  data-toggle="modal" data-target="#itemsModal{{ $order->id }}">{{ $order->items->count() }}</td>
                     <td class="bg-{{ $order->status_details['color'] }} text-light text-center">
                         {{ $order->status_details['value'] }}</td>
                     <td>
@@ -90,6 +90,45 @@
                                                         {{$order->owner->status}}
                                                     </td>
                                                 </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- The Modal -->
+                        <div class="modal " id="itemsModal{{ $order->id }}">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">ITEMS DETAILS</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+                                        <div class="d-flex justify-content-center">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">name</th>
+                                                        <th class="text-center">quantity</th>
+                                                        <th class="text-center">price</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($order->items as $item)
+                                                        <tr>
+                                                            <td class="text-center">{{ $item->product->name }}</td>
+                                                            <td class="text-center">{{ $item->quantity }}</td>
+                                                            <td class="text-center">{{ $item->total_price }}</td>
+                                                            
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
                                             </table>
                                         </div>
                                     </div>
