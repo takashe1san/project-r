@@ -51,7 +51,7 @@
                     <td class="bg-{{ $order->status_details['color'] }} text-light text-center">
                         {{ $order->status_details['value'] }}</td>
                     <td>
-                        <a class="btn btn-success" href="{{route('order.show', ['order' => $order->id])}}">print</a>
+                        <a class="btn btn-success" href="{{route('order.show', ['order' => $order->id])}}" title="print"><i class="now-ui-icons files_single-copy-04"></i></a>
                         <!-- The Modal -->
                         <div class="modal " id="ownerModal{{ $order->id }}">
                             <div class="modal-dialog modal-sm">

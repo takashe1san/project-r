@@ -9,14 +9,14 @@
     <title>
         @yield('title')
     </title>
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    {{-- <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'> --}}
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
         name='viewport' />
     <!--     Fonts and icons     -->
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+    {{-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" --}}
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <!-- CSS Files -->
     <link href="{{ asset('../assets/css/bootstrap.min.css') }}" rel="stylesheet" />
@@ -47,7 +47,7 @@
                     </li>
                     <li>
                         <a href="{{ route('category.index') }}">
-                            <i class="now-ui-icons files_single-copy-04"></i>
+                            <i class="now-ui-icons files_single-copy-04 "></i>
                             <p>Categories</p>
                         </a>
                     </li>
