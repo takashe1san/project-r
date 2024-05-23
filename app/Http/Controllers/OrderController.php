@@ -21,7 +21,7 @@ class OrderController extends Controller
             $orders = $orders->where('status', $request->status);
         }
 
-        $orders = $orders->get();
+        $orders = $orders->with(['items', 'owner'])->get();
         // return $orders;
         return view('dashboard.orders.index', compact('orders'));
     }
