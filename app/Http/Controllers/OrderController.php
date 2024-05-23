@@ -60,7 +60,10 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        $order->owner;
+        $order->items;
+        // return $order;
+        return view('dashboard.orders.order', compact('order'));
     }
 
     /**

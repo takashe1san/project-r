@@ -69,6 +69,7 @@ Route::group([
         'controller' => OrderController::class,
     ],function () {
         Route::get('/', 'index')->name('order.index');
+        Route::get('/{order}', 'show')->name('order.show');
     });
 });
 
