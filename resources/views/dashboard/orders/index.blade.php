@@ -1,4 +1,5 @@
 @extends('layouts.dashboardlayout')
+@section('title', 'orders')
 
 @section('content')
     <div class="d-flex justify-content-between px-3">
