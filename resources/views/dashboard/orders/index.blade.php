@@ -55,7 +55,7 @@
                         @if ($order->status != App\Enums\OrderStatusEnum::CANCELED->value) data-toggle="modal" data-target="#statusModal{{ $order->id }}" title="change status" @else title="you can't change this status" @endif>
                         {{ $order->status_details['value'] }}</td>
                     <td class="text-center">
-                        <a class="btn btn-success" href="{{ route('order.show', ['order' => $order->id]) }}"
+                        <a class="btn btn-success" target="_blank" href="{{ route('order.show', ['order' => $order->id]) }}"
                             title="print">
                             <i class='fas fa-print'></i>
                         </a>

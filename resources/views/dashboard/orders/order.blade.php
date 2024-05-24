@@ -96,9 +96,9 @@
         </div>
     </div>
     <script>
-        // setTimeout(() => {
-        //     window.print();
-        // }, 500);
+        setTimeout(() => {
+            window.print();
+        }, 500);
     </script>
 </body>
 </html>
