@@ -117,6 +117,13 @@ class Order extends Model
         return ($this->save());
     }
 
+    public function complate()
+    {
+        if($this->user_id != auth()->id()) return false;
+        $this->status = OrderStatusEnum::COMPLATED->value;
+        return ($this->save());
+    }
+
     // ********************** relationships ********************
 
     public function items()

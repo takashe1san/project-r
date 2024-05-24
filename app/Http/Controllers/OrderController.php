@@ -9,6 +9,7 @@ use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class OrderController extends Controller
 {
@@ -56,8 +57,9 @@ class OrderController extends Controller
     {
         $order->owner;
         $order->items;
+        $qrCode = QrCode::size(200)->generate(route('order.complate', ['order' => $order->id]));
         // return $order;
-        return view('dashboard.orders.order', compact('order'));
+        return view('dashboard.orders.order', compact('order', 'qrCode'));
     }
 
     public function changeStatus(ChangeOrderStatusRequest $request, Order $order)
@@ -75,6 +77,12 @@ class OrderController extends Controller
             return redirect()->back()->with(['m-color' => 'success', 'message' => 'order rejected successfully', 'm-dir' => 'ltr']);
         } else {
             return redirect()->back()->with(['m-color' => 'danger', 'message' => 'failed to reject order', 'm-dir' => 'ltr']);
+        }
+    }
+
+    public function complate(Order $order){
+        if($order->complate()){
+            return view('m', ['message' => 'order [' . $order->id .'] is completed', 'dir' => 'ltr']);
         }
     }
 

@@ -39,6 +39,7 @@ Route::group([
     'middleware' => 'auth',
 ], function() {
     Route::post('store', 'store')->name('order.store');
+    Route::get('/{order}/complate', 'complate')->name('order.complate');
 });
 
 Route::group([
