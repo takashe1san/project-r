@@ -70,6 +70,7 @@ Route::group([
     ],function () {
         Route::get('/', 'index')->name('order.index');
         Route::get('/{order}', 'show')->name('order.show');
+        Route::get('/{order}/change-status', 'changeStatus')->name('order.changeStatus');
     });
 });
 

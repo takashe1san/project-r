@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ChangeOrderStatusRequest;
 use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
@@ -24,14 +25,6 @@ class OrderController extends Controller
         $orders = $orders->with(['items', 'owner'])->get();
         // return $orders;
         return view('dashboard.orders.index', compact('orders'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -64,6 +57,15 @@ class OrderController extends Controller
         $order->items;
         // return $order;
         return view('dashboard.orders.order', compact('order'));
+    }
+
+    public function changeStatus(ChangeOrderStatusRequest $request, Order $order)
+    {
+        if($order->update($request->validated())) {
+            return redirect()->back()->with(['m-color' => 'success', 'message' => 'order status changed successfully', 'm-dir' => 'ltr']);
+        } else {
+            return redirect()->back()->with(['m-color' => 'danger', 'message' => 'failed to change order status', 'm-dir' => 'ltr']);
+        }
     }
 
     /**

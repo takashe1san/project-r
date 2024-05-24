@@ -4,7 +4,7 @@
     <div class="d-flex justify-content-between px-3">
         <strong>ORDERS</strong>
         <div class="d-flex">
-            
+
             @if (request('status') !== null)
                 <a href="{{ route('order.index') }}" class="btn btn-secondary px-2 py-1">X</a>
             @endif
@@ -45,13 +45,17 @@
         <tbody>
             @foreach ($orders as $order)
                 <tr>
-                    <td class="text-center" data-toggle="modal" data-target="#ownerModal{{ $order->id }}">{{ $order->owner->name }}</td>
+                    <td class="text-center" data-toggle="modal" data-target="#ownerModal{{ $order->id }}">
+                        {{ $order->owner->name }}</td>
                     <td class="text-center">{{ $order->total }}</td>
-                    <td class="text-center"  data-toggle="modal" data-target="#itemsModal{{ $order->id }}">{{ $order->items->count() }}</td>
-                    <td class="bg-{{ $order->status_details['color'] }} text-light text-center">
+                    <td class="text-center" data-toggle="modal" data-target="#itemsModal{{ $order->id }}">
+                        {{ $order->items->count() }}</td>
+                    <td class="bg-{{ $order->status_details['color'] }} text-light text-center"
+                        @if ($order->status != App\Enums\OrderStatusEnum::CANCELED->value) data-toggle="modal" data-target="#statusModal{{ $order->id }}" title="change status" @else title="you can't change this status" @endif>
                         {{ $order->status_details['value'] }}</td>
                     <td>
-                        <a class="btn btn-success" href="{{route('order.show', ['order' => $order->id])}}" title="print">
+                        <a class="btn btn-success" href="{{ route('order.show', ['order' => $order->id]) }}"
+                            title="print">
                             <i class='fas fa-print'></i>
                         </a>
                         <!-- The Modal -->
@@ -73,7 +77,7 @@
                                                         name
                                                     </td>
                                                     <td class="px-4">
-                                                        {{$order->owner->name}}
+                                                        {{ $order->owner->name }}
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -81,7 +85,7 @@
                                                         phone
                                                     </td>
                                                     <td class="px-4">
-                                                        {{$order->owner->phone}}
+                                                        {{ $order->owner->phone }}
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -89,7 +93,7 @@
                                                         status
                                                     </td>
                                                     <td class="px-4">
-                                                        {{$order->owner->status}}
+                                                        {{ $order->owner->status }}
                                                     </td>
                                                 </tr>
                                             </table>
@@ -127,13 +131,58 @@
                                                             <td class="text-center">{{ $item->product->name }}</td>
                                                             <td class="text-center">{{ $item->quantity }}</td>
                                                             <td class="text-center">{{ $item->total_price }}</td>
-                                                            
+
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- The Modal -->
+                        <div class="modal " id="statusModal{{ $order->id }}">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <form action="{{route('order.changeStatus', ['order' => $order->id])}}" method="get">
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">CHANGE STATUS</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <select name='status' class="form-control bg-light">
+                                                    <option value={{ App\Enums\OrderStatusEnum::PENDING->value }}
+                                                        @selected($order->status == App\Enums\OrderStatusEnum::PENDING->value)>
+                                                        معلق
+                                                    </option>
+                                                    <option value={{ App\Enums\OrderStatusEnum::PREPARING->value }}
+                                                        @selected($order->status == App\Enums\OrderStatusEnum::PREPARING->value)>
+                                                        يتم تجهيزه
+                                                    </option>
+                                                    <option value={{ App\Enums\OrderStatusEnum::ONTHEWAY->value }}
+                                                        @selected($order->status == App\Enums\OrderStatusEnum::ONTHEWAY->value)>
+                                                        في الطريق
+                                                    </option>
+                                                    <option value={{ App\Enums\OrderStatusEnum::COMPLATED->value }}
+                                                        @selected($order->status == App\Enums\OrderStatusEnum::COMPLATED->value)>
+                                                        مكتمل
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                            <button class="btn btn-success" type="submit">change</button>
+                                        </div>
                                     </form>
 
                                 </div>
