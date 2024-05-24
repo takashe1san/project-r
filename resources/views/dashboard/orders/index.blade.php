@@ -45,19 +45,20 @@
         <tbody>
             @foreach ($orders as $order)
                 <tr>
-                    <td class="text-center" data-toggle="modal" data-target="#ownerModal{{ $order->id }}">
+                    <td class="text-center" title="show owner details" data-toggle="modal" data-target="#ownerModal{{ $order->id }}">
                         {{ $order->owner->name }}</td>
                     <td class="text-center">{{ $order->total }}</td>
-                    <td class="text-center" data-toggle="modal" data-target="#itemsModal{{ $order->id }}">
+                    <td class="text-center" title="show items" data-toggle="modal" data-target="#itemsModal{{ $order->id }}">
                         {{ $order->items->count() }}</td>
                     <td class="bg-{{ $order->status_details['color'] }} text-light text-center"
                         @if ($order->status != App\Enums\OrderStatusEnum::CANCELED->value) data-toggle="modal" data-target="#statusModal{{ $order->id }}" title="change status" @else title="you can't change this status" @endif>
                         {{ $order->status_details['value'] }}</td>
-                    <td>
+                    <td class="text-center">
                         <a class="btn btn-success" href="{{ route('order.show', ['order' => $order->id]) }}"
                             title="print">
                             <i class='fas fa-print'></i>
                         </a>
+                        <button class="btn btn-secondary" title="reject order" data-toggle="modal" data-target="#rejectModal{{ $order->id }}">X</button>
                         <!-- The Modal -->
                         <div class="modal " id="ownerModal{{ $order->id }}">
                             <div class="modal-dialog modal-sm">
@@ -182,6 +183,35 @@
                                         <!-- Modal footer -->
                                         <div class="modal-footer">
                                             <button class="btn btn-success" type="submit">change</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- The Modal -->
+                        <div class="modal " id="rejectModal{{ $order->id }}">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <form action="{{route('order.reject', ['order' => $order->id])}}" method="get">
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">REJECT ORDER</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <input type="text" name="rejection_notes" class="form-control" placeholder="rejection notes" required>
+                                                {{-- <textarea name="rejection_notes" cols="30" rows="10" class="form-control mx-2" placeholder="rejection notes"></textarea> --}}
+                                            </div>
+                                        </div>
+
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                            <button class="btn btn-secondary" type="submit">send</button>
                                         </div>
                                     </form>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ChangeOrderStatusRequest;
+use App\Http\Requests\RejectOrderRequest;
 use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
@@ -65,6 +66,15 @@ class OrderController extends Controller
             return redirect()->back()->with(['m-color' => 'success', 'message' => 'order status changed successfully', 'm-dir' => 'ltr']);
         } else {
             return redirect()->back()->with(['m-color' => 'danger', 'message' => 'failed to change order status', 'm-dir' => 'ltr']);
+        }
+    }
+
+    public function reject(RejectOrderRequest $request, Order $order)
+    {
+        if($order->reject($request->rejection_notes)) {
+            return redirect()->back()->with(['m-color' => 'success', 'message' => 'order rejected successfully', 'm-dir' => 'ltr']);
+        } else {
+            return redirect()->back()->with(['m-color' => 'danger', 'message' => 'failed to reject order', 'm-dir' => 'ltr']);
         }
     }
 

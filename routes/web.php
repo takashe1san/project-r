@@ -71,6 +71,7 @@ Route::group([
         Route::get('/', 'index')->name('order.index');
         Route::get('/{order}', 'show')->name('order.show');
         Route::get('/{order}/change-status', 'changeStatus')->name('order.changeStatus');
+        Route::get('/{order}/reject', 'reject')->name('order.reject');
     });
 });
 

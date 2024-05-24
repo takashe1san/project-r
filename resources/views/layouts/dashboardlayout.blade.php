@@ -51,20 +51,20 @@
                             <p>Categories</p>
                         </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="">
                             <i class="now-ui-icons shopping_bag-16"></i>
                             <p>Products</p>
                         </a>
-                    </li>
-                    <li>
+                    </li> --}}
+                    {{-- <li>
                         <a href="">
                             <i class="now-ui-icons shopping_delivery-fast"></i>
                             <p>Drivers</p>
                         </a>
-                    </li>
+                    </li> --}}
                     <li>
-                        <a href="">
+                        <a href="{{ route('order.index') }}">
                             <i class="now-ui-icons files_box"></i>
                             <p>Orders</p>
                         </a>

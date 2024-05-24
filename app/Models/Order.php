@@ -110,6 +110,13 @@ class Order extends Model
         }
     }
 
+    public function reject($rejectionNotes)
+    {
+        $this->status = OrderStatusEnum::REJECTED->value;
+        $this->rejection_notes = $rejectionNotes;
+        return ($this->save());
+    }
+
     // ********************** relationships ********************
 
     public function items()
