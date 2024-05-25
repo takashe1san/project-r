@@ -79,6 +79,7 @@ Route::group([
         'controller' => TableController::class,
     ], function () {
         Route::get('/', 'index')->name('table.index');
+        Route::get('/{table}/allow', 'allowToggle')->name('table.allow');
         Route::post('/store', 'store')->name('table.store');
     });
 });

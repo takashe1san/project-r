@@ -19,14 +19,6 @@ class TableController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(StoreTableRequest $request)
@@ -37,6 +29,15 @@ class TableController extends Controller
             return redirect()->back()->with(['m-color' => 'success', 'message' => 'table created successfully', 'm-dir' => 'ltr']);
         } else {
             return redirect()->back()->with(['m-color' => 'danger', 'message' => 'failed to create table', 'm-dir' => 'ltr']);
+        }
+    }
+
+    public function allowToggle(Table $table)
+    {
+        if($table->allowToggle()){
+            return redirect()->back()->with(['m-color' => 'success', 'message' => 'successful', 'm-dir' => 'ltr']);
+        } else {
+            return redirect()->back()->with(['m-color' => 'danger', 'message' => 'failed', 'm-dir' => 'ltr']);
         }
     }
 

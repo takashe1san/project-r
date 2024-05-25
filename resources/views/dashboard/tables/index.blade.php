@@ -28,10 +28,29 @@
                     <td>{{$table->code}}</td>
                     <td>{{$table->type->name}}</td>
                     @if($table->allowed)
-                    <td class="bg-success text-light">Y</td>
+                    <td class="bg-success text-light"  data-toggle="modal" data-target="#allowModal{{$table->id}}">Y</td>
                     @else
-                    <td class="bg-danger text-light">N</td>
+                    <td class="bg-danger text-light"  data-toggle="modal" data-target="#allowModal{{$table->id}}">N</td>
                     @endif
+                    <!-- The Modal -->
+    <div class="modal" id="allowModal{{$table->id}}">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">TOGGLE TABLE ALLOWED</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <a href="{{route('table.allow', ['table' => $table->id])}}" class="btn btn-info">change</a>
+                    </div>
+
+            </div>
+        </div>
+    </div>
                     {{-- <td></td> --}}
                 </tr>
             @endforeach

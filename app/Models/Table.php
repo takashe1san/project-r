@@ -38,6 +38,11 @@ class Table extends Model
         return $code;
     }
 
+    public function allowToggle(){
+        $this->allowed = !$this->allowed;
+        return ($this->save());
+    }
+
     // ********************** relationships ********************
 
 
