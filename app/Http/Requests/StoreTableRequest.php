@@ -22,7 +22,8 @@ class StoreTableRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'code' => ['required', 'single_word'],
+            'type' => ['required', 'integer', 'min:0', 'max:2'],
         ];
     }
 }

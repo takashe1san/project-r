@@ -13,7 +13,9 @@ class TableController extends Controller
      */
     public function index()
     {
-        //
+        $tables = Table::get();
+        // return $tables;
+        return view('dashboard.tables.index', compact('tables'));
     }
 
     /**
@@ -29,7 +31,13 @@ class TableController extends Controller
      */
     public function store(StoreTableRequest $request)
     {
-        //
+        // return $request;
+        $table = new Table($request->validated());
+        if($table->save()){
+            return redirect()->back()->with(['m-color' => 'success', 'message' => 'table created successfully', 'm-dir' => 'ltr']);
+        } else {
+            return redirect()->back()->with(['m-color' => 'danger', 'message' => 'failed to create table', 'm-dir' => 'ltr']);
+        }
     }
 
     /**

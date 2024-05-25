@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{AuthController, CartController, CategoryController, DashboardController, HomeController, OrderController, ProductController};
+use App\Http\Controllers\{AuthController, CartController, CategoryController, DashboardController, HomeController, OrderController, ProductController, TableController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -73,6 +73,13 @@ Route::group([
         Route::get('/{order}', 'show')->name('order.show');
         Route::get('/{order}/change-status', 'changeStatus')->name('order.changeStatus');
         Route::get('/{order}/reject', 'reject')->name('order.reject');
+    });
+    Route::group([
+        'prefix' => 'tables',
+        'controller' => TableController::class,
+    ], function () {
+        Route::get('/', 'index')->name('table.index');
+        Route::post('/store', 'store')->name('table.store');
     });
 });
 
