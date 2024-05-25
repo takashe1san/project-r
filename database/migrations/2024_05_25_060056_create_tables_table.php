@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('code')->unique();
             $table->tinyInteger('type');
+            $table->boolean('allowed')->default(false);
             $table->timestamps();
         });
     }
