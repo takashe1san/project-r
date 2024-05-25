@@ -24,7 +24,7 @@
         <tbody>
             @foreach ($tables as $table)
                 <tr>
-                    <td></td>
+                    <td>{{$table->QR}}</td>
                     <td>{{$table->code}}</td>
                     <td>{{$table->type->name}}</td>
                     @if($table->allowed)
