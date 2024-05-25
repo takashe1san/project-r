@@ -28,9 +28,9 @@
                     <td>{{$table->code}}</td>
                     <td>{{$table->type->name}}</td>
                     @if($table->allowed)
-                    <td class="bg-success">Y</td>
+                    <td class="bg-success text-light">Y</td>
                     @else
-                    <td class="bg-danger">N</td>
+                    <td class="bg-danger text-light">N</td>
                     @endif
                     {{-- <td></td> --}}
                 </tr>
