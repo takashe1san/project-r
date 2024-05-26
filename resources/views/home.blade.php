@@ -3,6 +3,7 @@
 
 
 @section('content')
+@php if(auth()->check() && request()->exists('table'))  auth()->logout(); @endphp
 
     <!-- Start Slider Home -->
     <section class="banner-b" style="background-image: url('{{ asset('../assets/image/unnamed.jpg') }}')">
@@ -98,7 +99,7 @@
                                                         </div>
 
                                                         <form method="POST"
-                                                            action="{{route('cart.store', ['product' => $product->id])}}">
+                                                            action="{{ (auth()->check()) ? route('cart.store', ['product' => $product->id]) : route('cart.add', ['product' => $product->id])}}">
                                                             @csrf
                                                             <!-- Modal body -->
                                                             <div class="modal-body">

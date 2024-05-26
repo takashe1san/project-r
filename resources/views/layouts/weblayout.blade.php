@@ -118,16 +118,16 @@
                             </div>
                         </div>
                         <div class="navbar-left">
-                            @auth
+                            @if(auth()->check() || session()->has('cart'))
                                 <div class="Lang-b">
                                     <a href="" class="btn btn-warning" style="padding: 0 41px" data-toggle="modal"
                                         data-target="#cartModal">السلة</a>
                                 </div>
 
-                            @endauth
+                            @endif
                         </div>
                     </div>
-                    @auth
+                    @if(auth()->check() || session()->has('cart'))
                         <!-- The Modal -->
                         <div class="modal" id="cartModal">
                             <div class="modal-dialog">
@@ -152,16 +152,29 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach (auth()->user()->cart as $cartItem)
-                                                        <tr>
-                                                            <td>{{ $cartItem->product->name }}</td>
-                                                            <td>{{ $cartItem->quantity }}</td>
-                                                            <td>{{ $cartItem->total_price }}</td>
-                                                            <td><a href="{{ route('cart.destroy', ['cartItem' => $cartItem->id]) }}"
-                                                                    class="" style="padding: 0 20px"><i
-                                                                        class='fa fa-trash'></i></a></td>
-                                                        </tr>
-                                                    @endforeach
+                                                    @if (auth()->check())
+                                                        @foreach (auth()->user()->cart as $cartItem)
+                                                            <tr>
+                                                                <td>{{ $cartItem->product->name }}</td>
+                                                                <td>{{ $cartItem->quantity }}</td>
+                                                                <td>{{ $cartItem->total_price }}</td>
+                                                                <td><a href="{{ route('cart.destroy', ['cartItem' => $cartItem->id]) }}"
+                                                                        class="" style="padding: 0 20px"><i
+                                                                            class='fa fa-trash'></i></a></td>
+                                                            </tr>
+                                                        @endforeach
+                                                    @else
+                                                    @foreach (session()->get('cart') as $cartItem)
+                                                    <tr>
+                                                        <td>{{ $cartItem['product']->name }}</td>
+                                                        <td>{{ $cartItem['quantity'] }}</td>
+                                                        <td>{{ $cartItem['total_price'] }}</td>
+                                                        <td><a href="{{ route('cart.remove', ['id' => $cartItem['product']->id]) }}"
+                                                                class="" style="padding: 0 20px"><i
+                                                                    class='fa fa-trash'></i></a></td>
+                                                    </tr>
+                                                @endforeach
+                                                    @endif
                                                 </tbody>
                                             </table>
                                         </div>
@@ -212,7 +225,7 @@
                                 </div>
                             </div>
                         </div>
-                    @endauth
+                    @endif
                     <!-- Satrt Responsive -->
                     <div class="responsive">
                         @auth

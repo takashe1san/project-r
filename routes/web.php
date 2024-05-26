@@ -27,10 +27,12 @@ Route::group([
 Route::group([
     'prefix' => 'cart',
     'controller' => CartController::class,
-    'middleware' => 'auth',
+    // 'middleware' => 'auth',
 ], function() {
-    Route::post('store/{product}', 'store')->name('cart.store');
-    Route::get('destroy/{cartItem}', 'destroy')->name('cart.destroy');
+    Route::post('store/{product}', 'store')->name('cart.store')->middleware('auth');
+    Route::get('destroy/{cartItem}', 'destroy')->name('cart.destroy')->middleware('auth');
+    Route::post('add/{product}', 'add')->name('cart.add');
+    Route::get('remove/{id}', 'remove')->name('cart.remove');
 });
 
 Route::group([

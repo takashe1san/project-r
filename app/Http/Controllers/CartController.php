@@ -11,7 +11,7 @@ class CartController extends Controller
 {
 
     /**
-     * Store a newly created resource in storage.
+     * Store the cart item in database.
      */
     public function store(StoreCartRequest $request, Product $product)
     {
@@ -29,15 +29,41 @@ class CartController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Add the cart item to the session.
      */
-    public function update(UpdateCartRequest $request, Cart $cart)
+    public function add(StoreCartRequest $request, Product $product)
     {
-        //
+        // return $product;
+        $cart = session()->get('cart');
+        if (!isset($cart)) $cart = [];
+        // return $cart;
+        if (isset($cart[$product->id])) {
+            $cart[$product->id]['quantity'] += $request->quantity;
+            $cart[$product->id]['total_price'] = $product->getPrice() * $cart[$product->id]['quantity'];
+        } else {
+            $cartItem = [
+                'quantity' => $request->quantity,
+                'total_price' => $request->quantity * $product->getPrice(),
+                'product' => $product,
+            ];
+            $cart[$product->id] = $cartItem;
+        }
+        session(['cart' => $cart]);
+        return redirect()->back()->with(['m-color' => 'success', 'message' => 'تمت أضافة "' . $product->name . '" إلى السلة.', 'm-dir' => 'rtl']);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the cart item from the session.
+     */
+    public function remove($id) {
+        $cart = session()->get('cart');
+        unset($cart[$id]);
+        session(['cart' => $cart]);
+        return redirect()->back()->with(['m-color' => 'success', 'message' => 'تم حذف العنصر من السلة', 'm-dir' => 'rtl']);
+    }
+
+    /**
+     * Remove the cart item from the database.
      */
     public function destroy(Cart $cartItem)
     {
