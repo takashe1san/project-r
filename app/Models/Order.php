@@ -16,6 +16,7 @@ class Order extends Model
         static::creating(function (Order $order) {
             $order->status = OrderStatusEnum::PENDING->value;
             $order->user_id = auth()->id();
+            $order->inplace = false;
         });
     }
 
