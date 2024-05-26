@@ -85,28 +85,32 @@
                     <div class="collapse navbar-collapse" id="myNavbar">
                         <ul class="nav navbar-nav">
                             <li id="menu-item-276"
-                                class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-276">
-                                <a href="" aria-current="page">الرئيسية</a>
+                                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-276">
+                                <a href="#" aria-current="page">الرئيسية</a>
                             </li>
-                            <li id="menu-item-118"
+                            {{-- <li id="menu-item-118"
                                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-118">
-                                {{-- <a href="{{ route('web.about.index') }}">من نحن</a></li> --}}
+                                <a href="#">من نحن</a></li> --}}
                             <li id="menu-item-124"
                                 class="menu-item menu-item-type-post_type_archive menu-item-object-menu menu-item-124">
-                                <a href="menu-all.html">قائمة الطعام</a>
+                                <a href="#menu">قائمة الطعام</a>
                             </li>
-                            <li id="menu-item-119"
+                            {{-- <li id="menu-item-119"
                                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-119">
                                 <a href="branches.html">فروعنا</a>
+                            </li> --}}
+                            <li id="menu-item-121"
+                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-121">
+                                <a href="#image-gallary">معرض الصور</a>
                             </li>
                             <li id="menu-item-121"
                                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-121">
-                                <a href="photo-galary.html">معرض الصور</a>
+                                <a href="#feedbacks">آراء العملاء</a>
                             </li>
-                            <li id="menu-item-120"
+                            {{-- <li id="menu-item-120"
                                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-120">
                                 <a href="contact.html">اتصل بنا</a>
-                            </li>
+                            </li> --}}
                         </ul>
                         <div class="navbar-left two">
                             <div class="btn-more-menu">
@@ -276,23 +280,23 @@
                         <div class="side-nav">
                             <ul>
                                 <li class="current-menu-item">
-                                    <a href="index.html">الرئيسية</a>
+                                    <a href="#">الرئيسية</a>
                                 </li>
-                                <li>
+                                {{-- <li>
                                     <a href="about-us.html">من نحن</a>
-                                </li>
+                                </li> --}}
                                 <li>
-                                    <a href="menu/index.html">قائمة الطعام</a>
+                                    <a href="#menu">قائمة الطعام</a>
                                 </li>
-                                <li>
+                                {{-- <li>
                                     <a href="branch/index.html">فروعنا</a>
-                                </li>
+                                </li> --}}
                                 <li>
-                                    <a href="gallery/index.html">معرض الصور</a>
+                                    <a href="#image-gallary">معرض الصور</a>
 
                                 </li>
                                 <li>
-                                    <a href="contact/index.html">اتصل بنا</a>
+                                    <a href="#feedbacks">آراء العملاء</a>
                                 </li>
                             </ul>
                         </div>
@@ -312,7 +316,7 @@
                                 <ul>
                                     <li>
                                         <span>
-                                            Info@.com </span>
+                                            Info@rand-yamama.com </span>
                                     </li>
 
                                 </ul>
@@ -346,20 +350,20 @@
                             </div>
                             <!-- End -->
                             <!-- Start Title -->
-                            <div class="title-follow">
+                            {{-- <div class="title-follow">
                                 <span>موقعنا</span>
-                            </div>
+                            </div> --}}
                             <!-- End -->
                             <!-- Start Map-sidebar -->
-                            <div class="map-sidebar">
+                            {{-- <div class="map-sidebar">
                                 <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d926499.5318243024!2d46.490958279802825!3d24.89324685088861!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1z2YXYt9i52YUg2LDZiNmCINin2YTYr9mK2LHYqQ!5e0!3m2!1sar!2ssa!4v1580156543576!5m2!1sar!2ssa" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>                             -->
-                            </div>
+                            </div> --}}
                             <!-- End -->
 
                         </div>
                     </div>
 
-                    <div class="col-md-4 col-xs-12">
+                    {{-- <div class="col-md-4 col-xs-12">
                         <!-- Start Title -->
                         <div class="title-follow">
                             <span>تواصل معنا</span>
@@ -423,7 +427,7 @@
                         </div>
                         <!-- End -->
 
-                    </div>
+                    </div> --}}
                     <!-- End -->
                 </div>
 

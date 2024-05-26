@@ -1,7 +1,6 @@
 @extends('layouts.weblayout')
 @section('title', 'مطاعم الرند واليمامة')
-{{-- مطاعم الرند واليمامة
-@endsection --}}
+
 
 @section('content')
 
@@ -25,7 +24,7 @@
     </section>
 
     <!-- Start Courses-m -->
-    <section class="courses-m">
+    <section class="courses-m" id="menu">
         <div class="container">
             <div class="col-xs-12">
                 <div class="title">
@@ -138,7 +137,7 @@
     </section>
     <!-- End Courses-m -->
     <!-- Start Gallary-m -->
-    <section class="gallary-m">
+    <section class="gallary-m" id="image-gallary">
         <div class="container">
             <div class="col-xs-12">
                 <div class="title">
@@ -177,7 +176,7 @@
     <!-- End Gallary-m -->
 
     <!-- Start Client-m -->
-    <section class="client-m">
+    <section class="client-m" id="feedbacks">
         <div class="container">
             <div class="col-xs-12">
                 <div class="title">
