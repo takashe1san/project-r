@@ -46,66 +46,80 @@
         <tbody>
             @foreach ($orders as $order)
                 <tr>
-                    <td class="text-center" title="show owner details" data-toggle="modal" data-target="#ownerModal{{ $order->id }}">
-                        {{ $order->owner->name }}</td>
+                    @if ($order->inplace)
+                        <td class="text-center"><span class="bg-primary p-1 text-light">inplace</span> <br> {{ $order->notes }}</td>
+                    @else
+                        <td class="text-center" title="show owner details" data-toggle="modal"
+                            data-target="#ownerModal{{ $order->id }}">
+                            {{ $order->owner->name }}
+                        </td>
+                    @endif
                     <td class="text-center">{{ $order->total }}</td>
-                    <td class="text-center" title="show items" data-toggle="modal" data-target="#itemsModal{{ $order->id }}">
+                    <td class="text-center" title="show items" data-toggle="modal"
+                        data-target="#itemsModal{{ $order->id }}">
                         {{ $order->items->count() }}</td>
                     <td class="bg-{{ $order->status_details['color'] }} text-light text-center"
                         @if ($order->status != App\Enums\OrderStatusEnum::CANCELED->value) data-toggle="modal" data-target="#statusModal{{ $order->id }}" title="change status" @else title="you can't change this status" @endif>
                         {{ $order->status_details['value'] }}</td>
                     <td class="text-center">
-                        <a class="btn btn-success" target="_blank" href="{{ route('order.show', ['order' => $order->id]) }}"
-                            title="print">
-                            <i class='fas fa-print'></i>
-                        </a>
-                        <button class="btn btn-secondary" title="reject order" data-toggle="modal" data-target="#rejectModal{{ $order->id }}">X</button>
-                        <!-- The Modal -->
-                        <div class="modal " id="ownerModal{{ $order->id }}">
-                            <div class="modal-dialog modal-sm">
-                                <div class="modal-content">
+                        @if (!$order->inplace)
+                            <a class="btn btn-success" target="_blank"
+                                href="{{ route('order.show', ['order' => $order->id]) }}" title="print">
+                                <i class='fas fa-print'></i>
+                            </a>
+                        @endif
+                        @if ($order->status != App\Enums\OrderStatusEnum::COMPLATED->value)
+                            <button class="btn btn-secondary" title="reject order" data-toggle="modal"
+                                data-target="#rejectModal{{ $order->id }}">X</button>
+                        @endif
+                        @if (!$order->inplace)
+                            <!-- The Modal -->
+                            <div class="modal " id="ownerModal{{ $order->id }}">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
 
-                                    <!-- Modal Header -->
-                                    <div class="modal-header">
-                                        <h4 class="modal-title">OWNER DETAILS</h4>
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    </div>
-                                    <!-- Modal body -->
-                                    <div class="modal-body">
-                                        <div class="d-flex justify-content-center">
-                                            <table class="border">
-                                                <tr>
-                                                    <td class="px-4">
-                                                        name
-                                                    </td>
-                                                    <td class="px-4">
-                                                        {{ $order->owner->name }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="px-4">
-                                                        phone
-                                                    </td>
-                                                    <td class="px-4">
-                                                        {{ $order->owner->phone }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="px-4">
-                                                        status
-                                                    </td>
-                                                    <td class="px-4">
-                                                        {{ $order->owner->status }}
-                                                    </td>
-                                                </tr>
-                                            </table>
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">OWNER DETAILS</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         </div>
-                                    </div>
-                                    </form>
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                            <div class="d-flex justify-content-center">
+                                                <table class="border">
+                                                    <tr>
+                                                        <td class="px-4">
+                                                            name
+                                                        </td>
+                                                        <td class="px-4">
+                                                            {{ $order->owner->name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="px-4">
+                                                            phone
+                                                        </td>
+                                                        <td class="px-4">
+                                                            {{ $order->owner->phone }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="px-4">
+                                                            status
+                                                        </td>
+                                                        <td class="px-4">
+                                                            {{ $order->owner->status }}
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        </form>
 
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
                         <!-- The Modal -->
                         <div class="modal " id="itemsModal{{ $order->id }}">
                             <div class="modal-dialog">
@@ -150,7 +164,8 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
 
-                                    <form action="{{route('order.changeStatus', ['order' => $order->id])}}" method="get">
+                                    <form action="{{ route('order.changeStatus', ['order' => $order->id]) }}"
+                                        method="get">
                                         <!-- Modal Header -->
                                         <div class="modal-header">
                                             <h4 class="modal-title">CHANGE STATUS</h4>
@@ -169,10 +184,12 @@
                                                         @selected($order->status == App\Enums\OrderStatusEnum::PREPARING->value)>
                                                         يتم تجهيزه
                                                     </option>
-                                                    <option value={{ App\Enums\OrderStatusEnum::ONTHEWAY->value }}
-                                                        @selected($order->status == App\Enums\OrderStatusEnum::ONTHEWAY->value)>
-                                                        في الطريق
-                                                    </option>
+                                                    @if (!$order->inplace)
+                                                        <option value={{ App\Enums\OrderStatusEnum::ONTHEWAY->value }}
+                                                            @selected($order->status == App\Enums\OrderStatusEnum::ONTHEWAY->value)>
+                                                            في الطريق
+                                                        </option>
+                                                    @endif
                                                     <option value={{ App\Enums\OrderStatusEnum::COMPLATED->value }}
                                                         @selected($order->status == App\Enums\OrderStatusEnum::COMPLATED->value)>
                                                         مكتمل
@@ -195,7 +212,7 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
 
-                                    <form action="{{route('order.reject', ['order' => $order->id])}}" method="get">
+                                    <form action="{{ route('order.reject', ['order' => $order->id]) }}" method="get">
                                         <!-- Modal Header -->
                                         <div class="modal-header">
                                             <h4 class="modal-title">REJECT ORDER</h4>
@@ -205,7 +222,8 @@
                                         <!-- Modal body -->
                                         <div class="modal-body">
                                             <div class="row">
-                                                <input type="text" name="rejection_notes" class="form-control" placeholder="rejection notes" required>
+                                                <input type="text" name="rejection_notes" class="form-control"
+                                                    placeholder="rejection notes" required>
                                                 {{-- <textarea name="rejection_notes" cols="30" rows="10" class="form-control mx-2" placeholder="rejection notes"></textarea> --}}
                                             </div>
                                         </div>

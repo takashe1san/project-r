@@ -20,11 +20,15 @@ class OrderController extends Controller
     {
         $orders = Order::orderBy('created_at', 'desc')->take(25);
 
-        if(isset($request->status)){
+        if (isset($request->status)) {
             $orders = $orders->where('status', $request->status);
         }
 
-        $orders = $orders->with(['items', 'owner'])->get();
+        if (auth()->check())
+            $orders = $orders->with(['items', 'owner'])->get();
+        else
+            $orders = $orders->with(['items'])->get();
+
         // return $orders;
         return view('dashboard.orders.index', compact('orders'));
     }
@@ -53,7 +57,7 @@ class OrderController extends Controller
     /**
      * create an order from Session cart
      */
-    public function add($table) 
+    public function add($table)
     {
         // return 111;
         DB::beginTransaction();
@@ -86,7 +90,7 @@ class OrderController extends Controller
 
     public function changeStatus(ChangeOrderStatusRequest $request, Order $order)
     {
-        if($order->update($request->validated())) {
+        if ($order->update($request->validated())) {
             return redirect()->back()->with(['m-color' => 'success', 'message' => 'order status changed successfully', 'm-dir' => 'ltr']);
         } else {
             return redirect()->back()->with(['m-color' => 'danger', 'message' => 'failed to change order status', 'm-dir' => 'ltr']);
@@ -95,16 +99,17 @@ class OrderController extends Controller
 
     public function reject(RejectOrderRequest $request, Order $order)
     {
-        if($order->reject($request->rejection_notes)) {
+        if ($order->reject($request->rejection_notes)) {
             return redirect()->back()->with(['m-color' => 'success', 'message' => 'order rejected successfully', 'm-dir' => 'ltr']);
         } else {
             return redirect()->back()->with(['m-color' => 'danger', 'message' => 'failed to reject order', 'm-dir' => 'ltr']);
         }
     }
 
-    public function complate(Order $order){
-        if($order->complate()){
-            return view('m', ['message' => 'order [' . $order->id .'] is completed', 'dir' => 'ltr']);
+    public function complate(Order $order)
+    {
+        if ($order->complate()) {
+            return view('m', ['message' => 'order [' . $order->id . '] is completed', 'dir' => 'ltr']);
         }
     }
 
