@@ -30,7 +30,7 @@ class OrderController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store an order from DB cart.
      */
     public function store(StoreOrderRequest $request)
     {
@@ -40,6 +40,28 @@ class OrderController extends Controller
 
             if ($order->save()) {
                 $order->takeItemsFromCart();
+            }
+            DB::commit();
+            return redirect()->back()->with(['m-color' => 'success', 'message' => 'تم تقديم الطلب', 'm-dir' => 'rtl']);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            // return redirect()->back()->with(['m-color' => 'danger', 'message' => $e->getMessage(), 'm-dir' => 'rtl']);
+            return redirect()->back()->with(['m-color' => 'danger', 'message' => 'فشل تقديم الطلب', 'm-dir' => 'rtl']);
+        }
+    }
+
+    /**
+     * create an order from Session cart
+     */
+    public function add($table) 
+    {
+        // return 111;
+        DB::beginTransaction();
+        try {
+            $order = new Order(['notes' => 'table: ' . $table]);
+
+            if ($order->save()) {
+                $order->takeItemsFromSession();
             }
             DB::commit();
             return redirect()->back()->with(['m-color' => 'success', 'message' => 'تم تقديم الطلب', 'm-dir' => 'rtl']);

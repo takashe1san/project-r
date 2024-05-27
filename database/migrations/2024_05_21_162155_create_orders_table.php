@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('rejection_notes')->nullable();
             $table->string('notes')->nullable();
             $table->boolean('inplace');
-            $table->foreignId('user_id')->constrained();
+            $table->nullable()->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

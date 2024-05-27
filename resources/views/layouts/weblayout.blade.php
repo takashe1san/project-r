@@ -118,16 +118,15 @@
                             </div>
                         </div>
                         <div class="navbar-left">
-                            @if(auth()->check() || session()->has('cart'))
+                            @if (auth()->check() || session()->has('cart'))
                                 <div class="Lang-b">
-                                    <a href="" class="btn btn-warning" style="padding: 0 41px" data-toggle="modal"
-                                        data-target="#cartModal">السلة</a>
+                                    <a href="" class="btn btn-warning" style="padding: 0 41px"
+                                        data-toggle="modal" data-target="#cartModal">السلة</a>
                                 </div>
-
                             @endif
                         </div>
                     </div>
-                    @if(auth()->check() || session()->has('cart'))
+                    @if (auth()->check() || session()->has('cart'))
                         <!-- The Modal -->
                         <div class="modal" id="cartModal">
                             <div class="modal-dialog">
@@ -164,16 +163,16 @@
                                                             </tr>
                                                         @endforeach
                                                     @else
-                                                    @foreach (session()->get('cart') as $cartItem)
-                                                    <tr>
-                                                        <td>{{ $cartItem['product']->name }}</td>
-                                                        <td>{{ $cartItem['quantity'] }}</td>
-                                                        <td>{{ $cartItem['total_price'] }}</td>
-                                                        <td><a href="{{ route('cart.remove', ['id' => $cartItem['product']->id]) }}"
-                                                                class="" style="padding: 0 20px"><i
-                                                                    class='fa fa-trash'></i></a></td>
-                                                    </tr>
-                                                @endforeach
+                                                        @foreach (session()->get('cart') as $cartItem)
+                                                            <tr>
+                                                                <td>{{ $cartItem['product']->name }}</td>
+                                                                <td>{{ $cartItem['quantity'] }}</td>
+                                                                <td>{{ $cartItem['total_price'] }}</td>
+                                                                <td><a href="{{ route('cart.remove', ['id' => $cartItem['product']->id]) }}"
+                                                                        class="" style="padding: 0 20px"><i
+                                                                            class='fa fa-trash'></i></a></td>
+                                                            </tr>
+                                                        @endforeach
                                                     @endif
                                                 </tbody>
                                             </table>
@@ -186,8 +185,12 @@
                                             @csrf --}}
                                         <button type="button" class="btn btn-secondary"
                                             data-dismiss="modal">إغلاق</button>
-                                        <button type="button" class="btn btn-success" data-toggle="modal"
-                                            data-target="#orderModal">أطلب</button>
+                                        @if (auth()->check())
+                                            <button type="button" class="btn btn-success" data-toggle="modal"
+                                                data-target="#orderModal">أطلب</button>
+                                        @else
+                                            <a href="{{ route('order.add', ['table' => request()->get('table')]) }}" class="btn btn-success">أطلب</a>
+                                        @endif
                                         {{-- </form> --}}
                                     </div>
 
@@ -210,7 +213,8 @@
                                         <!-- Modal body -->
                                         <div class="modal-body">
                                             <div class="row">
-                                                <input type="text" class="form-control" name="address" placeholder="Address" required>
+                                                <input type="text" class="form-control" name="address"
+                                                    placeholder="Address" required>
                                             </div>
                                         </div>
 

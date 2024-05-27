@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\OrderStatusEnum;
+use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,8 +16,13 @@ class Order extends Model
         parent::boot();
         static::creating(function (Order $order) {
             $order->status = OrderStatusEnum::PENDING->value;
-            $order->user_id = auth()->id();
-            $order->inplace = false;
+            if(auth()->check()) {
+                $order->user_id = auth()->id();
+                $order->inplace = false;
+            } else {
+                $order->inplace = true;
+            }
+
         });
     }
 
@@ -109,6 +115,23 @@ class Order extends Model
             }
             $cartItem->delete();
         }
+    }
+
+    public function takeItemsFromSession() 
+    {
+        $cart = session()->get('cart');
+        if (!isset($cart)) $cart = [];
+        if (empty($cart)) throw new \Exception('empty cart');
+        
+        foreach ($cart as $id => $cartItem) {
+            unset($cartItem['product']);
+            $cartItem['product_id'] = $id;
+            $cartItem['order_id'] = $this->id;
+            $orderItem = new OrderItem($cartItem);
+            if(!$orderItem->save())  throw new \Exception('failed to save order item ' . $cartItem[$id]);
+            unset($cart[$id]);
+        }
+        session(['cart' => $cart]);
     }
 
     public function reject($rejectionNotes)

@@ -38,10 +38,11 @@ Route::group([
 Route::group([
     'prefix' => 'order',
     'controller' => OrderController::class,
-    'middleware' => 'auth',
+    // 'middleware' => 'auth',
 ], function() {
-    Route::post('store', 'store')->name('order.store');
-    Route::get('/{order}/complate', 'complate')->name('order.complate');
+    Route::post('store', 'store')->name('order.store')->middleware('auth');
+    Route::get('/{order}/complate', 'complate')->name('order.complate')->middleware('auth');
+    Route::get('/add/{table}', 'add')->name('order.add');
 });
 
 Route::group([
