@@ -58,16 +58,16 @@
                             <p>Products</p>
                         </a>
                     </li> --}}
-                    {{-- <li>
-                        <a href="">
-                            <i class="now-ui-icons shopping_delivery-fast"></i>
-                            <p>Drivers</p>
-                        </a>
-                    </li> --}}
                     <li>
                         <a href="{{ route('order.index') }}">
                             <i class="now-ui-icons files_box"></i>
                             <p>Orders</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('table.index')}}">
+                            <i class="now-ui-icons tech_tablet"></i>
+                            <p>Tables</p>
                         </a>
                     </li>
                 </ul>
