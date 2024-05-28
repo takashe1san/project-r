@@ -70,6 +70,12 @@
                             <p>Tables</p>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{route('image.index')}}">
+                            <i class="now-ui-icons tech_tablet"></i>
+                            <p>Images</p>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
