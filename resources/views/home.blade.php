@@ -3,7 +3,11 @@
 
 
 @section('content')
-@php if(auth()->check() && request()->exists('table'))  auth()->logout(); @endphp
+    @php
+        if (auth()->check() && request()->exists('table')) {
+            auth()->logout();
+        }
+    @endphp
 
     <!-- Start Slider Home -->
     <section class="banner-b" style="background-image: url('{{ asset('../assets/image/unnamed.jpg') }}')">
@@ -99,7 +103,7 @@
                                                         </div>
 
                                                         <form method="POST"
-                                                            action="{{ (auth()->check()) ? route('cart.store', ['product' => $product->id]) : route('cart.add', ['product' => $product->id])}}">
+                                                            action="{{ auth()->check() ? route('cart.store', ['product' => $product->id]) : route('cart.add', ['product' => $product->id]) }}">
                                                             @csrf
                                                             <!-- Modal body -->
                                                             <div class="modal-body">
@@ -107,10 +111,8 @@
 
                                                                     Quantity
                                                                     <input type="number" class="form-control"
-                                                                        placeholder="Enter quantity"
-                                                                        name="quantity" min="0"
-                                                                        max="25"
-                                                                        value=1>
+                                                                        placeholder="Enter quantity" name="quantity"
+                                                                        min="0" max="25" value=1>
                                                                 </div>
                                                             </div>
 
@@ -147,30 +149,30 @@
             </div>
             <div class="col-xs-12 padding">
 
-                {{-- <div class="col-md-4 col-xs-12">
-                    <a href="assets/images/123.png" data-fancybox="gallery" class="block-gallery">
-                        <div class="img" style="background-image: url(assets/images/123.png)"></div>
-                    </a>
-                </div>
+                @foreach ($images as $image)
+                    <div class="col-md-4 col-xs-12">
+                        <img src="{{ $image->image }}" class="img" alt="">
+                    </div>
+                @endforeach
 
-                <div class="col-md-4 col-xs-12">
+                {{-- <div class="col-md-4 col-xs-12">
                     <a href="assets/images/image.png" data-fancybox="gallery" class="block-gallery small wow fadeIn">
                         <div class="img" style="background-image: url(assets/images/image.png)"></div>
                     </a>
                     <a href="assets/images/مقبلات-مشكله.jpg">
                         <div class="img" style="background-image: url(assets/images/مقبلات-مشكله.jpg)"></div>
                     </a>
-                </div>
-                <div class="col-md-4 col-xs-12">
+                </div> --}}
+                {{-- <div class="col-md-4 col-xs-12">
                     <a href="assets/images/سلطة-خضراء.jpg" data-fancybox="gallery" class="block-gallery">
                         <div class="img" style="background-image: url(assets/images/سلطة-خضراء.jpg)"></div>
                     </a>
                 </div> --}}
             </div>
-
+            {{-- 
             <div class="col-xs-12">
                 <a href="gallery/index.html" class="btn">المزيد</a>
-            </div>
+            </div> --}}
 
         </div>
     </section>
