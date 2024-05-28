@@ -193,63 +193,26 @@
             </div>
             <div class="col-md-6 col-xs-12">
                 <div class="client-slider owl-carousel owl-theme">
-                    <div class="item">
-                        <div class="client-block">
-                            <div class="title-client">
-                                <div class="icon"><span>"</span></div>
-                                <div class="name-client">محمد الشهرى</div>
-                            </div>
-                            <div class="body-block">
-                                <p>
-                                    بصراحة طبخ أكثر من رائع وخدمة مميزة . </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="client-block">
-                            <div class="title-client">
-                                <div class="icon"><span>"</span></div>
-                                <div class="name-client">حسام الدين</div>
-                            </div>
-                            <div class="body-block">
-                                <p>
-                                    مطعم رائع ومميز
-                                    وكذلك عندهم جودة ممتازة . </p>
+                    @foreach ($feedbacks as $feedback)
+                        <div class="item">
+                            <div class="client-block">
+                                <div class="title-client">
+                                    <div class="icon"><span>"</span></div>
+                                    <div class="name-client">{{$feedback->user->name}}</div>
+                                </div>
+                                <div class="body-block">
+                                    <p> {{$feedback->feedback}} </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="item">
-                        <div class="client-block">
-                            <div class="title-client">
-                                <div class="icon"><span>"</span></div>
-                                <div class="name-client">ابراهيم عبدالله</div>
-                            </div>
-                            <div class="body-block">
-                                <p>
-                                    انا عميل لديهم منذ مدة
-                                    واكلهم اكثر من رائع. </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="client-block">
-                            <div class="title-client">
-                                <div class="icon"><span>"</span></div>
-                                <div class="name-client">ابو محمد السهلي</div>
-                            </div>
-                            <div class="body-block">
-                                <p>
-                                    يعطيهم العافيه بصراحة طبخهم ممتاز مرة واسعار معقولة </p>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
 
                 </div>
             </div>
             @auth
                 <div class="col-xs-12">
                     <div class="border p-2 mt-3">
-                        <form action="{{route('feedback.store')}}" method="post">
+                        <form action="{{ route('feedback.store') }}" method="post">
                             @csrf
                             شاركنا رأيك
                             <textarea name="feedback" class="form-control" cols="10" rows="5"></textarea>

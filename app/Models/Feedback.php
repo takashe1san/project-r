@@ -27,5 +27,7 @@ class Feedback extends Model
 
     // ********************** relationships ********************
 
-
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }
