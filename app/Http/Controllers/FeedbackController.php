@@ -8,59 +8,18 @@ use App\Http\Requests\UpdateFeedbackRequest;
 
 class FeedbackController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(StoreFeedbackRequest $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Feedback $feedback)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Feedback $feedback)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateFeedbackRequest $request, Feedback $feedback)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Feedback $feedback)
-    {
-        //
+        $feedback = Feedback::firstOrNew(['user_id' => auth()->id()]);
+        $feedback->feedback = $request->feedback;
+        if ($feedback->save()) {
+            return redirect()->back()->with(['m-color' => 'success', 'message' => 'شكراً لمشاركتك', 'm-dir' => 'rtl']);
+        } else {
+            return redirect()->back()->with(['m-color' => 'danger', 'message' => 'فشلت العملية', 'm-dir' => 'rtl']);
+        }
     }
 }

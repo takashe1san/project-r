@@ -22,7 +22,7 @@ class StoreFeedbackRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'feedback' => ['required', 'string'],
         ];
     }
 }

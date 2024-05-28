@@ -188,7 +188,7 @@
             </div>
             <div class="col-md-6 col-xs-12">
                 <div class="img-client">
-                    <img src="{{ asset('../assets/image/client.png') }}" />
+                    <img src="{{ asset('assets/image/client.png') }}" />
                 </div>
             </div>
             <div class="col-md-6 col-xs-12">
@@ -246,6 +246,18 @@
 
                 </div>
             </div>
+            @auth
+                <div class="col-xs-12">
+                    <div class="border p-2 mt-3">
+                        <form action="{{route('feedback.store')}}" method="post">
+                            @csrf
+                            شاركنا رأيك
+                            <textarea name="feedback" class="form-control" cols="10" rows="5"></textarea>
+                            <button class="btn btn-secondary" type="submit">إرسال</button>
+                        </form>
+                    </div>
+                </div>
+            @endauth
         </div>
     </section>
     <!-- End Client-m -->
