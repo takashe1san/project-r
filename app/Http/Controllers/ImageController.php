@@ -13,15 +13,8 @@ class ImageController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $images = Image::get();
+        return view('dashboard.images.index', compact('images'));
     }
 
     /**
@@ -29,31 +22,12 @@ class ImageController extends Controller
      */
     public function store(StoreImageRequest $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Image $image)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Image $image)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateImageRequest $request, Image $image)
-    {
-        //
+        $image = new Image($request->validated());
+        if($image->save()) {
+            return redirect()->back()->with(['m-color' => 'success', 'message' => 'Image saved successfully', 'm-dir' => 'ltr']);
+        } else {
+            return redirect()->back()->with(['m-color' => 'danger', 'message' => 'failed to save image', 'm-dir' => 'ltr']);
+        }
     }
 
     /**
@@ -61,6 +35,10 @@ class ImageController extends Controller
      */
     public function destroy(Image $image)
     {
-        //
+        if($image->delete()) {
+            return redirect()->back()->with(['m-color' => 'success', 'message' => 'Image deleted successfully', 'm-dir' => 'ltr']);
+        } else {
+            return redirect()->back()->with(['m-color' => 'danger', 'message' => 'failed to delete image', 'm-dir' => 'ltr']);
+        }
     }
 }

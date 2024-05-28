@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{AuthController, CartController, CategoryController, DashboardController, HomeController, OrderController, ProductController, TableController};
+use App\Http\Controllers\{AuthController, CartController, CategoryController, DashboardController, HomeController, ImageController, OrderController, ProductController, TableController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -88,5 +88,14 @@ Route::group([
         Route::get('/', 'index')->name('table.index');
         Route::get('/{table}/allow', 'allowToggle')->name('table.allow');
         Route::post('/store', 'store')->name('table.store');
+    });
+
+    Route::group([
+        'prefix' => 'images',
+        'controller' => ImageController::class,
+    ], function () {
+        Route::get('/', 'index')->name('image.index');
+        Route::post('/store', 'store')->name('image.store');
+        Route::get('/destroy/{image}', 'destroy')->name('image.destroy');
     });
 });
