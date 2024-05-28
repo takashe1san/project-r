@@ -49,6 +49,7 @@ Route::group([
     'prefix' => 'dashboard',
 ], function () {
     Route::get('/', [DashboardController::class, 'index']);
+
     Route::group([
         'prefix' => 'categories',
         'controller' => CategoryController::class,
@@ -59,6 +60,7 @@ Route::group([
         Route::get('/{category}/products', 'show')->name('category.show');
         Route::get('/destroy/{category}', 'destroy')->name('category.destroy');
     });
+
     Route::group([
         'prefix' => 'products',
         'controller' => ProductController::class,
@@ -68,6 +70,7 @@ Route::group([
         Route::post('/{product}/change-image', 'changeImage')->name('product.changeImage');
         Route::get('/destroy/{product}', 'destroy')->name('product.destroy');
     });
+
     Route::group([
         'prefix' => 'orders',
         'controller' => OrderController::class,
@@ -77,6 +80,7 @@ Route::group([
         Route::get('/{order}/change-status', 'changeStatus')->name('order.changeStatus');
         Route::get('/{order}/reject', 'reject')->name('order.reject');
     });
+
     Route::group([
         'prefix' => 'tables',
         'controller' => TableController::class,
@@ -85,8 +89,4 @@ Route::group([
         Route::get('/{table}/allow', 'allowToggle')->name('table.allow');
         Route::post('/store', 'store')->name('table.store');
     });
-});
-
-Route::get('/test', function() {
-    return 'success';
 });
