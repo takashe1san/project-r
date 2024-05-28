@@ -10,6 +10,13 @@ class Product extends Model
 {
     use HasFactory, SaveImage;
 
+    public static function boot()
+    {
+        parent::boot();
+        static::deleting(function (Product $product){
+            $product->deleteFile($product->image);
+        });
+    }
     
     protected $fillable = [
         'name',
