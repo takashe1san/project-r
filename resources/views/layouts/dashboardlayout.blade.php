@@ -37,9 +37,6 @@
             </div>
             <div class="sidebar-wrapper" id="sidebar-wrapper">
                 <ul class="nav">
-                    {{-- @if (auth()->user->isAdmin())
-
-            @endif --}}
                     <li>
                         <a href="">
                             <i class="now-ui-icons design_app"></i>

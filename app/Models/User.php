@@ -57,6 +57,14 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public static function getUser() : self {
+        return auth()->user();
+    }
+
+    public function isManager() {
+        return ($this->type == UserTypeEnum::MANAGER->value);
+    }
+
     // ********************** relationships ********************
 
     public function cart() {

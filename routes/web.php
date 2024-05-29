@@ -49,6 +49,7 @@ Route::group([
 
 Route::group([
     'prefix' => 'dashboard',
+    'middleware' => 'manager',
 ], function () {
     Route::get('/', [DashboardController::class, 'index']);
 
