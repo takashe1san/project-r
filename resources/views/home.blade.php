@@ -7,6 +7,9 @@
         if (auth()->check() && request()->exists('table')) {
             auth()->logout();
         }
+        if (request()->missing('table')){
+            session()->forget('cart');
+        }
     @endphp
 
     <!-- Start Slider Home -->
