@@ -99,27 +99,23 @@
                         <span class="navbar-toggler-bar navbar-kebab"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                        <form>
-                            <div class="input-group no-border">
-                            </div>
-                        </form>
+                        
                         <ul class="navbar-nav">
                             <li class="nav-item">
                             </li>
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a href="{{route('logout')}}" class="btn btn-danger">
                                     LOUGOUT
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a class="nav-link" href="">
                                     <i class="now-ui-icons users_single-02"></i>
                                     <p>
                                         <span class="d-lg-none d-md-block">Account</span>
                                     </p>
                                 </a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </div>
                 </div>
