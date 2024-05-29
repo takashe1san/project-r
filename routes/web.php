@@ -22,6 +22,8 @@ Route::group([
     Route::get('login', 'login')->name('login');
     Route::post('login', 'authenticate')->name('auth');
     Route::get('logout', 'logout')->name('logout');
+    Route::get('register', 'register')->name('register');
+    Route::post('signup', 'signup')->name('signup');
 });
 
 Route::group([

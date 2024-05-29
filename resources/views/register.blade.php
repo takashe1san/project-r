@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تسجيل الدخول</title>
+    <title>انشاء حساب</title>
     <link rel="shortcut icon" href="assets/images/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
@@ -78,6 +78,7 @@
 
 <body>
     @include('includes.message')
+
     <!---------- Main Container  ------------->
     <div class="container d-flex justify-content-center align-items-center ">
         <!----------  login Container  ------------>
@@ -86,36 +87,36 @@
             <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box"
                 style=" background-color: #f5c223;    ;">
                 <div class="featured-image mb-3">
-                    <img src="{{ asset('./assets/image/ra.png') }}" alt="" class="img-fluid"
-                        style="width: 300px;">
+                    <img src="assets/images/ra.png" alt="" class="img-fluid" style="width: 300px;">
                 </div>
                 <p class="text-white fs-2" style="font-weight: 700; letter-spacing: 2px;">Be Verified</p>
-                <small class="text-wrap text-center" style="width: 17rem;">Login or create an account at any
-                    time</small>
+                <small class="text-wrap text-center" style="width: 17rem;">login to your account any time </small>
             </div>
             <!-------------- right box ---------------->
             <div class="col-md-6 right-box">
                 <div class="row align-items-center mb-1">
                     <div class="header-text mb-3">
                         <h3>Welcome</h3>
-                        <p>Enter your credential to login</p>
+                        <p>You Can create an account</p>
                     </div>
-                    <form action="{{ route('auth') }}" method="post">
+                    <form action="{{route('signup')}}" method="post">
                         @csrf
                         <div class="input-group mb-3">
+                            <input type="text" name="name" class="form-control form-control-lg bg-light"
+                                placeholder=" Full Name">
+                        </div>
+                        <div class="input-group mb-3">
                             <input type="text" pattern="09[0-9]{8}" title="09********" name="phone"
-                                class="form-control form-control-lg bg-light" placeholder="phone number">
-
+                            class="form-control form-control-lg bg-light" placeholder="phone number">
                         </div>
                         <div class="input-group mb-1">
                             <input type="password" name="password" class="form-control form-control-lg bg-light "
                                 placeholder="Password">
                         </div>
-
                         <div class="input-group mb-3">
-                            <button class="btn btn-lg  w-100 fs-6" style="background-color: #ab1d19; color: #FFFFFF;"
-                                type="submit">Login</button>
-                            <span>You do not have an account?</span><span><a href="{{route('register')}}">sign up</a></span>
+                            <button class="btn btn-lg  w-100 fs-6" style="    background-color: #ab1d19;color: #FFFFFF;"
+                                type="submit">create</button>
+                            <span>Do you have an account?</span><span><a href="{{route('login')}}">sign in</a></span>
                         </div>
                     </form>
                 </div>
